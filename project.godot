@@ -1,0 +1,37 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="Godot Engine Launcher"
+config/description="App to manage Godot versions, maded is Godot."
+run/main_scene="res://scenes/Loader.tscn"
+boot_splash/image="res://textures/boot.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://godot.png"
+
+[display]
+
+window/size/width=225
+window/size/height=225
+window/size/resizable=false
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0, 0.235294, 0.415686, 1 )
+environment/default_environment="res://default_env.tres"
