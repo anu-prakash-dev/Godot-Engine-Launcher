@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot Engine Launcher"
-config/description="App to manage Godot versions, maded is Godot."
+config/description="App to manage Godot versions, maded in Godot."
 run/main_scene="res://scenes/Loader.tscn"
 boot_splash/image="res://textures/boot.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )

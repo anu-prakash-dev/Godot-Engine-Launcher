@@ -53,5 +53,10 @@ margin_top = 103.826
 margin_right = 185.643
 margin_bottom = 117.826
 text = "Updater started work..."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+download_chunk_size = 10000

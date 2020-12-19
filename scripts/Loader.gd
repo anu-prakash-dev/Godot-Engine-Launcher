@@ -1,17 +1,53 @@
 extends Node2D
 
-onready var request = HTTPRequest.new()
-
 func _ready():
 	make_dir("user://data")
 	make_dir("user://resources")
+	#write_file("user://data/godot.png", "image", read_file("res://textures/godot.png", "image"))
+	var data = [{"a1":"Godot_1.1",
+ "lb1":"https://downloads.tuxfamily.org/godotengine/1.1/Godot_v1.1_stable_x11.64.zip",
+ "wb1":"https://downloads.tuxfamily.org/godotengine/1.1/Godot_v1.1_stable_win64.exe.zip"
+}, {"a1":"Godot_2.0",
+ "lb1":"https://downloads.tuxfamily.org/godotengine/2.0/Godot_v2.0_stable_x11.64.zip",
+ "wb1":"https://downloads.tuxfamily.org/godotengine/2.0/Godot_v2.0_stable_win64.exe.zip"
+}, {"a1":"Godot_2.1",
+ "lb1":"https://downloads.tuxfamily.org/godotengine/2.1/Godot_v2.1-stable_x11.64.zip",
+ "wb1":"https://downloads.tuxfamily.org/godotengine/2.1/Godot_v2.1-stable_win64.exe.zip"
+}, {"a1":"Godot_2.1.7",
+ "lb1":"https://downloads.tuxfamily.org/godotengine/2.1.7/rc/20200815/Godot_v2.1.7-rc_20200815_x11.64.zip",
+ "wb1":"https://downloads.tuxfamily.org/godotengine/2.1.7/rc/20200815/Godot_v2.1.7-rc_20200815_win64.exe.zip",
+ "mb1":"https://downloads.tuxfamily.org/godotengine/2.1.7/rc/20200815/Godot_v2.1.7-rc_20200815_osx.64.zip"
+}, {"a1":"Godot_3.0",
+ "lb1":"https://downloads.tuxfamily.org/godotengine/3.0/Godot_v3.0-stable_x11.64.zip",
+ "wb1":"https://downloads.tuxfamily.org/godotengine/3.0/Godot_v3.0-stable_win64.exe.zip"}, {
+ "a1":"Godot_3.1",
+ "lb1":"https://downloads.tuxfamily.org/godotengine/3.1/Godot_v3.1-stable_x11.64.zip",
+ "wb1":"https://downloads.tuxfamily.org/godotengine/3.1/Godot_v3.1-stable_win64.exe.zip",
+ "mb1":"https://downloads.tuxfamily.org/godotengine/3.1/Godot_v3.1-stable_osx.64.zip"}, {
+ "a1":"Godot_3.2",
+ "lb1":"https://downloads.tuxfamily.org/godotengine/3.2/Godot_v3.2-stable_x11.64.zip",
+ "wb1":"https://downloads.tuxfamily.org/godotengine/3.2/Godot_v3.2-stable_win64.exe.zip",
+ "mb1":"https://downloads.tuxfamily.org/godotengine/3.2/Godot_v3.2-stable_osx.64.zip"}, {
+ "a1":"Godot_3.2.3",
+ "lb1":"https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_x11.64.zip",
+ "wb1":"https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_win64.exe.zip",
+ "mb1":"https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_osx.64.zip"}, {
+ "a1":"Godot_3.2.4_Beta_4",
+ "lb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta4/Godot_v3.2.4-beta4_x11.64.zip",
+ "wb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta4/Godot_v3.2.4-beta4_win64.exe.zip",
+ "mb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta4/Godot_v3.2.4-beta4_osx.universal.zip"
+ }]
+	var d = Directory.new()
+	write_file("user://data/resources.list", "var", data)
+	if not(d.file_exists("user://data/installed.list")):
+		write_file("user://data/installed.list", "var", [])
 	get_tree().change_scene("res://scenes/EngineList.tscn")
-
 
 func make_dir(path):
 	var dir = Directory.new()
 	if not(dir.dir_exists(path)):
 		dir.make_dir(path)
+
 func read_file(path, type):
 	var data = null
 	var file = File.new()
@@ -20,10 +56,17 @@ func read_file(path, type):
 		file.open(path, File.READ)
 		if(type == "json"):
 			data = to_json(file.get_line())
+		elif(type == "buffer"):
+			data = file.get_buffer()
+		elif(type == "image"):
+			var image = Image.new()
+			image.load(path)
+			data = image.get_data()
 		else:
 			data = file.get_as_text()
 		file.close()
 	return data
+
 func write_file(path, type, data):
 	var file = File.new()
 	var dir = Directory.new()
@@ -31,21 +74,14 @@ func write_file(path, type, data):
 	if(type == "json"):
 		var json = parse_json(data)
 		file.store_line(json)
+	elif(type == "var"):
+		file.store_var(data)
+	elif(type == "buffer"):
+		file.store_buffer(data)
+	elif(type == "image"):
+		var img = Image.new()
+		
+		img.save_png(data)
 	else:
 		file.store_line(data)
 	file.close()
-func download_file(link, path):
-	var file = File.new()
-	var http = HTTPRequest.new()
-	add_child(http)
-	var connection = http.connect("request_completed", self, "_http_request_completed")
-	var status = http.request(link)
-	if(status == OK):
-		pass
-	else:
-		print("ERROR: Failed connect to server. Trying again with POST option.")
-		var body = {"name": "GEL"}
-		var s = http.request(link, [], true, HTTPClient.METHOD_POST, body)
-func make_list():
-	if(read_file("user://data/installed.list", "json") == null):
-		pass
