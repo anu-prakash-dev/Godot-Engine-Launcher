@@ -59,4 +59,4 @@ __meta__ = {
 }
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-download_chunk_size = 10000
+download_chunk_size = 8192

@@ -1,22 +1,35 @@
 extends Node2D
 
+var sltd = {"path":"user://resources/Godot_3.2.3", "file_name":"Godot_3.2.3"}
 
 func _ready():
-	var r = OS.execute("cd", ["/home/gameplayer/.local/share/godot/app_userdata/Godot_Engine_Launcher/resources/Godot_3.2.3"], true)
-	var p = OS.execute("sh", ["/home/gameplayer/.local/share/godot/app_userdata/Godot_Engine_Launcher/resources/Godot_3.2.3/start.sh"], true)
-	var x = OS.shell_open("./home/gameplayer/.local/share/godot/app_userdata/Godot_Engine_Launcher/resources/Godot_3.2.3/Godot_v3.2.3-stable_x11.64")
-	var q = OS.shell_open("cd /home/gameplayer/.local/share/godot/app_userdata/Godot_Engine_Launcher/resources/Godot_3.2.3 && ./Godot_v3.2.3-stable_x11.64")
-	#var y = OS.execute(".", ["/home/gameplayer/.local/share/godot/app_userdata/Godot_Engine_Launcher/resources/Godot_3.2.3/Godot_v3.2.3-stable_x11.64"], true)
-	print(r)
-	print(p)
-	print(q)
-	print(x)
-	#print(y)
-	print("------")
-	var output = []
-	OS.execute(
-		'/usr/bin/env',
-		['/home/gameplayer/.local/share/godot/app_userdata/Godot_Engine_Launcher/resources/Godot_3.2.3/Godot_v3.2.3-stable_x11.64', '-p'],
-		false
-	)
-	print(output)
+	var dir = Directory.new()
+	var file = File.new()
+	var list = []
+	file.open("user://data/installed.list", File.READ)
+	list = file.get_var()
+	file.close()
+	dir.open("user://resources/"+sltd.file_name)
+	print("deleting files")
+	if not(dir.file_exists("godot.png")):
+		dir.list_dir_begin()
+		var ff = dir.get_next()
+		while not(ff == ""):
+			print(ff)
+			dir.remove(ff)
+			ff = dir.get_next()
+		dir.open("user://resources")
+		dir.remove(sltd.file_name)
+	print("fixing issues")
+	var tick = 0
+	var list2 = []
+	
+	var d = {"path":sltd.path, "version":sltd.file_name}
+	while not(tick == list.size()):
+		if not(list.find(d, tick)):
+			list2 += [list[tick]]
+		tick += 1
+	print(list2)
+	file.open("user://data/installed.list", File.WRITE)
+	file.store_var(list2)
+	file.close()
