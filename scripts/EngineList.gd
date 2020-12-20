@@ -4,6 +4,7 @@ var resources = null
 var installed = null
 
 func _ready():
+	OS.set_window_title("Godot Engine Launcher")
 	OS.window_borderless = false
 	OS.window_size.x = 1000
 	OS.window_size.y = 600

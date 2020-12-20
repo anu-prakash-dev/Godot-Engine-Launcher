@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready():
+	OS.set_window_title("Godot Engine Launcher")
 	make_dir("user://data")
 	make_dir("user://resources")
 	#write_file("user://data/godot.png", "image", read_file("res://textures/godot.png", "image"))

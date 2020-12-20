@@ -12,10 +12,12 @@ func read_data_to_download():
 		var tick = 0
 		while not(tick == data.size()):
 			make_dir("user://resources/"+data[tick].file_name)
+			
 			to_download("user://resources/"+data[tick].file_name, data[tick].link, data[tick].file_name)
 			tick += 1
 	r = true
 func _ready():
+	OS.set_window_title("Godot Engine Launcher - Updater")
 	OS.window_borderless = false
 	OS.window_size.y = 100
 	OS.window_size.x = 200
@@ -89,6 +91,12 @@ func write_file(path, type, data):
 		file.store_line(json)
 	elif(type == "var"):
 		file.store_var(data)
+	elif(type == "buffer"):
+		file.store_buffer(data)
+	elif(type == "string"):
+		file.store_string(data)
+	elif(type == "real"):
+		file.store_real(data)
 	else:
 		file.store_line(data)
 	file.close()
@@ -105,9 +113,8 @@ func download_file(to_path, link, file_name):
 func _on_request_completed(result, response_code, headers, body):
 	print("Downloading successfull!")
 	if(all_data.size() > 0):
-		var json = parse_json(body.get_string_from_utf8())
+		#var json = parse_json(body.get_string_from_utf8())
 		if(all_data[0].type == "file"):
-			var image = Image.new()
 			var file = File.new()
 			var dir = Directory.new()
 			if(dir.dir_exists(all_data[0].dir)):
@@ -127,6 +134,13 @@ func _on_request_completed(result, response_code, headers, body):
 				OS.execute("unzip", [p, "-d", x], true, output)
 				for line in output:
 					print(line)
+				
+				dir.open(OS.get_user_data_dir()+"/resources/"+all_data[0].file)
+				dir.list_dir_begin()
+				var f = dir.get_next()
+				OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/"+f])
+				write_file(OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/"+"start.sh", "string", "#!/bin/sh\rcd "+OS.get_user_data_dir()+"/resources/"+all_data[0].file+"\r./"+f)
+				OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/start.sh"], false)
 				add_installed(all_data[0].file, all_data[0].dir)
 			all_data.remove(0)
 	w = false
