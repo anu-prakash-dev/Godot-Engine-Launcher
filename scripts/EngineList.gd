@@ -12,6 +12,7 @@ func _ready():
 	var w = OS.get_window_size()
 	OS.set_window_position(s*0.5 - w*0.5)
 	read_source()
+	load_lang()
 func make_dir(path):
 	var dir = Directory.new()
 	if not(dir.dir_exists(path)):
@@ -46,4 +47,25 @@ func write_file(path, type, data):
 
 func read_source():
 	resources = read_file("res://data/resources.list", "var")
-	installed = read_file("user://data/installed.list", "var")
+	installed = null
+
+func load_lang():
+	var i = read_file("user://options/lang.settings", "json")
+	var lang = read_file("user://lang/"+i.lang+".lang", "json")
+	$Panel/Tab/Installed.text = lang.list_tab_installed
+	$Panel/Tab/to_download.text = lang.list_tab_all
+	$Panel/Tab/Installed/GUI/Run.text = lang.list_1_run
+	$Panel/Tab/Installed/GUI/Reinstall.text = lang.list_1_reinstall
+	$Panel/Tab/Installed/GUI/Remove.text = lang.list_1_remove
+	$Panel/Tab/to_download/GUI/Install.text = lang.list_2_install
+	$Panel/Exit.text = lang.exit
+	$Panel/Settings.text = lang.settings
+	get_node("Panel/Settings/GUI/Panel/Back with saving").text = lang.settings_b_w_s
+	get_node("Panel/Settings/GUI/Panel/Back without saving").text = lang.settings_b_wo_s
+	$Panel/Settings/GUI/Panel/Save.text = lang.settings_save
+	$Panel/Settings/GUI/Panel/main.text = lang.settings
+	$Panel/Settings/GUI/Panel/Runner/Label.text = lang.settings_1_runner
+	$Panel/Settings/GUI/Panel/Updater/Label.text = lang.settings_1_updater
+	$Panel/Settings/GUI/Panel/Runner/Label2.text = lang.settings_2_1
+	$Panel/Settings/GUI/Panel/Updater/Label2.text = lang.settings_2_2
+	$Panel/LOG_GUI/Panel/copy.text = lang.copy

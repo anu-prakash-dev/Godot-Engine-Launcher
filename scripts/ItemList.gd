@@ -35,20 +35,14 @@ var list = []
 func _ready():
 	self.clear()
 	var data = read_file("user://data/resources.list", "var")
+	var dir = Directory.new()
+	dir.open("user://data/installed")
 	var tick = 0
 	while not(tick == data.size()):
-		var l = read_file("user://data/installed.list", "var")
-		var t = 0
-		var add = true
-		while not(t == l.size()):
-			if(l[t].version == data[tick].a1):
-				add = false
-			t += 1
-		if(add == true):
+		if not(dir.file_exists("user://data/installed/"+data[tick].a1)):
 			if(OS.get_name() == "X11"):
-				list += [{"file_name":data[tick].a1, "link":data[tick].lb1}]
-			add_item(data[tick].a1, load("res://textures/godot.png"), true)
+				list += [{"link":data[tick].lb1, "file_name":data[tick].a1}]
+			add_item(data[tick].a1, load("res://textures/godot.png"))
 		tick += 1
-
 func _on_ItemList_item_selected(index):
 	get_tree().get_root().get_node("EngineList/Panel/Tab/to_download/GUI/Install").sltd = list[index]

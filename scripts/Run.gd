@@ -2,10 +2,13 @@ extends Button
 
 
 var sltd = {"path":null, "file_name":null}
+var a1 = true
+onready var time = OS.get_system_time_msecs()
 
 func _process(_delta):
-	if(self.pressed):
+	if(self.pressed and a1 == true):
 		if not(sltd.path == null):
+			var set1 = read_file("user://options/runner.settings", "json")
 			var dir = Directory.new()
 			dir.open(OS.get_user_data_dir()+"/resources/"+sltd.file_name)
 			dir.list_dir_begin()
@@ -19,12 +22,43 @@ func _process(_delta):
 			#OS.execute("cd", ["'"+OS.get_user_data_dir()+"/resources/"+sltd.file_name+"'"], false)
 			print("-|-")
 			print(read_file(OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/start.sh", ""))
-			OS.execute(
-			'/usr/bin/env',
-			[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
-			false
-			)
-			get_tree().quit()
+			if(set1.record_logs == false):
+				OS.execute(
+				'/usr/bin/env',
+				[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+				false
+				)
+			else:
+				OS.window_borderless = true
+				OS.window_size.x = 1
+				OS.window_size.y = 1
+				OS.window_position.x = 1
+				OS.window_position.y = 1
+				print("\n'"+sltd.file_name+"' OUTPUT:")
+				OS.execute(
+				'/usr/bin/env',
+				[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+				true, output
+				)
+				for line in output:
+					print(line)
+				
+				OS.window_borderless = false
+				OS.window_size.x = 1000
+				OS.window_size.y = 600
+				var s = OS.get_screen_size()
+				var w = OS.get_window_size()
+				OS.set_window_position(s*0.5 - w*0.5)
+				var log2 = make_log(output)
+				make_dir("user://resources/"+sltd.file_name+"_logs")
+				write_file("user://resources/"+sltd.file_name+"_logs/"+sltd.file_name+"_log%d"%(OS.get_system_time_secs()/10000)+".log", "json", make_log(output))
+				#get_tree().get_root().get_node("EngineList/LOG_GUI").show2(log2)
+			if(set1.close_launcher == true):
+				get_tree().quit()
+		a1 = false
+	if(a1 == false and OS.get_system_time_msecs() - time > 300):
+		time = OS.get_system_time_msecs()
+		a1 = true
 
 func reload():
 	pass
@@ -45,3 +79,24 @@ func read_file(path, type):
 			data = file.get_as_text()
 		file.close()
 	return data
+func write_file(path, type, data):
+	var file = File.new()
+	file.open(path, File.WRITE)
+	if(type == "json"):
+		file.store_line(to_json(data))
+	elif(type == "var"):
+		file.store_var(data)
+	else:
+		file.store_line(data)
+	file.close()
+func make_dir(path):
+	var dir = Directory.new()
+	if not(dir.dir_exists(path)):
+		dir.make_dir(path)
+func make_log(output):
+	var tick = 0
+	var data2 = ""
+	while not(tick+1 == output.size()):
+		data2 += output[tick]+"\n"
+		tick += 1
+	return data2

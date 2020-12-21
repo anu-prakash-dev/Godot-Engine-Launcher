@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/EngineList.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Exit.gd" type="Script" id=2]
@@ -9,6 +9,12 @@
 [ext_resource path="res://scripts/Install.gd" type="Script" id=7]
 [ext_resource path="res://scripts/Run.gd" type="Script" id=8]
 [ext_resource path="res://scripts/Remove.gd" type="Script" id=9]
+[ext_resource path="res://scripts/Reinstall.gd" type="Script" id=10]
+[ext_resource path="res://scripts/settings-Runner.gd" type="Script" id=11]
+[ext_resource path="res://scripts/settings-Updater.gd" type="Script" id=12]
+[ext_resource path="res://scripts/Settings.gd" type="Script" id=13]
+[ext_resource path="res://scripts/Back without saving.gd" type="Script" id=14]
+[ext_resource path="res://scripts/LOG_GUI.gd" type="Script" id=15]
 
 [node name="EngineList" type="Node2D"]
 script = ExtResource( 1 )
@@ -35,7 +41,18 @@ __meta__ = {
 margin_left = 862.0
 margin_top = 83.0
 margin_right = 984.0
-margin_bottom = 586.0
+margin_bottom = 275.0
+border_color = Color( 0, 0.164706, 0.258824, 1 )
+editor_only = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="Panel"]
+margin_left = 862.0
+margin_top = 477.0
+margin_right = 984.0
+margin_bottom = 591.0
 border_color = Color( 0, 0.164706, 0.258824, 1 )
 editor_only = false
 __meta__ = {
@@ -83,12 +100,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Reinstall" type="Button" parent="Panel/Tab/Installed/GUI"]
+margin_left = 850.295
+margin_top = 119.035
+margin_right = 958.295
+margin_bottom = 158.035
+text = "Reinstall"
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Remove" type="Button" parent="Panel/Tab/Installed/GUI"]
 modulate = Color( 0.984314, 0.00784314, 0.00784314, 1 )
-margin_left = 852.498
-margin_top = 122.444
-margin_right = 960.498
-margin_bottom = 161.444
+margin_left = 850.117
+margin_top = 166.098
+margin_right = 958.117
+margin_bottom = 205.098
 text = "Remove"
 script = ExtResource( 9 )
 __meta__ = {
@@ -170,5 +198,277 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Settings" type="Button" parent="Panel"]
+margin_left = 868.339
+margin_top = 484.978
+margin_right = 976.339
+margin_bottom = 523.978
+text = "Settings"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GUI" type="Control" parent="Panel/Settings"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="Panel" parent="Panel/Settings/GUI"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = -892.0
+margin_top = -511.0
+margin_right = 158.0
+margin_bottom = 135.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Panel/Settings/GUI"]
+margin_left = -772.449
+margin_top = -441.959
+margin_right = 27.5508
+margin_bottom = 58.0407
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back without saving" type="Button" parent="Panel/Settings/GUI/Panel"]
+margin_left = 652.377
+margin_top = 470.671
+margin_right = 790.377
+margin_bottom = 490.671
+text = "Back without saving"
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back with saving" type="Button" parent="Panel/Settings/GUI/Panel"]
+margin_left = 652.377
+margin_top = 443.702
+margin_right = 790.377
+margin_bottom = 463.702
+text = "Back with saving"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Button" parent="Panel/Settings/GUI/Panel"]
+margin_left = 652.377
+margin_top = 417.702
+margin_right = 790.377
+margin_bottom = 437.702
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D" type="Line2D" parent="Panel/Settings/GUI/Panel"]
+position = Vector2( 0, 25 )
+points = PoolVector2Array( 12.1766, 31.4662, 770.707, 31.5366 )
+width = 5.0
+
+[node name="main" type="Label" parent="Panel/Settings/GUI/Panel"]
+margin_left = 313.955
+margin_top = 8.48527
+margin_right = 364.955
+margin_bottom = 22.4853
+rect_scale = Vector2( 3, 3 )
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Runner" type="Control" parent="Panel/Settings/GUI/Panel"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/Settings/GUI/Panel/Runner"]
+margin_left = 155.173
+margin_top = 66.7106
+margin_right = 200.173
+margin_bottom = 80.7106
+rect_scale = Vector2( 2, 2 )
+text = "Runner"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D" type="Line2D" parent="Panel/Settings/GUI/Panel/Runner"]
+points = PoolVector2Array( 7.57771, 107.979, 400.612, 107.685 )
+width = 3.0
+
+[node name="Label2" type="Label" parent="Panel/Settings/GUI/Panel/Runner"]
+margin_left = 18.8988
+margin_top = 120.952
+margin_right = 246.899
+margin_bottom = 134.952
+text = "Close launcher when godot starting:
+
+Record godot logs:
+
+Language:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cgs" type="Button" parent="Panel/Settings/GUI/Panel/Runner"]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 372.272
+margin_top = 113.104
+margin_right = 392.272
+margin_bottom = 133.104
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rgl" type="Button" parent="Panel/Settings/GUI/Panel/Runner"]
+modulate = Color( 0, 1, 0, 1 )
+margin_left = 371.567
+margin_top = 149.879
+margin_right = 391.567
+margin_bottom = 169.879
+text = "+"
+
+[node name="lang" type="ItemList" parent="Panel/Settings/GUI/Panel/Runner"]
+margin_left = 86.0
+margin_top = 185.0
+margin_right = 389.0
+margin_bottom = 253.0
+items = [ "pl", null, false, "en", null, false ]
+allow_reselect = true
+auto_height = true
+
+[node name="Updater" type="Control" parent="Panel/Settings/GUI/Panel"]
+margin_left = 390.0
+margin_right = 430.0
+margin_bottom = 40.0
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/Settings/GUI/Panel/Updater"]
+margin_left = 155.173
+margin_top = 66.7106
+margin_right = 200.173
+margin_bottom = 80.7106
+rect_scale = Vector2( 2, 2 )
+text = "Updater"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D" type="Line2D" parent="Panel/Settings/GUI/Panel/Updater"]
+points = PoolVector2Array( 7.57771, 107.979, 400.612, 107.685 )
+width = 3.0
+
+[node name="Label2" type="Label" parent="Panel/Settings/GUI/Panel/Updater"]
+margin_left = 18.8988
+margin_top = 120.952
+margin_right = 246.899
+margin_bottom = 134.952
+text = "Download chunk size:
+
+Update resources.list: <Unavailable>
+
+Download last version of Godot: <Unavailable>
+
+Update launcher when update is available: <Unavailable>"
+
+[node name="DCS" type="Button" parent="Panel/Settings/GUI/Panel/Updater"]
+margin_left = 164.111
+margin_top = 116.542
+margin_right = 208.111
+margin_bottom = 136.542
+text = "8192"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LOG_GUI" type="Control" parent="Panel"]
+visible = false
+margin_left = 868.339
+margin_top = 89.0
+margin_right = 908.339
+margin_bottom = 129.0
+script = ExtResource( 15 )
+
+[node name="background" type="Panel" parent="Panel/LOG_GUI"]
+modulate = Color( 1, 1, 1, 0.368627 )
+margin_left = -906.0
+margin_top = -113.0
+margin_right = 201.0
+margin_bottom = 554.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Panel/LOG_GUI"]
+margin_left = -746.0
+margin_top = -2.0
+margin_right = -15.0
+margin_bottom = 452.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/LOG_GUI/Panel"]
+margin_left = 337.24
+margin_top = 4.5659
+margin_right = 377.24
+margin_bottom = 18.5659
+rect_scale = Vector2( 3, 3 )
+text = "Log"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D2" type="Line2D" parent="Panel/LOG_GUI/Panel"]
+position = Vector2( -26.449, 20 )
+points = PoolVector2Array( 42.7626, 34, 752.908, 33.5038 )
+width = 5.0
+
+[node name="log" type="RichTextLabel" parent="Panel/LOG_GUI/Panel"]
+margin_left = 22.0
+margin_top = 74.0
+margin_right = 722.0
+margin_bottom = 380.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D3" type="Line2D" parent="Panel/LOG_GUI/Panel"]
+position = Vector2( -26.449, 350 )
+points = PoolVector2Array( 42.7626, 34, 752.908, 33.5038 )
+width = 5.0
+
+[node name="ok" type="Button" parent="Panel/LOG_GUI/Panel"]
+margin_left = 338.885
+margin_top = 399.182
+margin_right = 384.885
+margin_bottom = 426.182
+text = "Ok"
+
+[node name="copy" type="Button" parent="Panel/LOG_GUI/Panel"]
+margin_left = 25.3984
+margin_top = 404.787
+margin_right = 92.3984
+margin_bottom = 424.787
+text = "Copy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="item_selected" from="Panel/Tab/Installed/GUI/ItemList" to="Panel/Tab/Installed/GUI/ItemList" method="_on_ItemList_item_selected"]
 [connection signal="item_selected" from="Panel/Tab/to_download/GUI/ItemList" to="Panel/Tab/to_download/GUI/ItemList" method="_on_ItemList_item_selected"]
+[connection signal="item_selected" from="Panel/Settings/GUI/Panel/Runner/lang" to="Panel/Settings" method="_on_lang_item_selected"]
