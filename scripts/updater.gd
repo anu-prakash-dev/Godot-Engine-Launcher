@@ -17,6 +17,10 @@ func read_data_to_download():
 			if not(dir.file_exists("user://resources/"+data[tick].file_name+"/"+data[tick].file_name+".zip")):
 				to_download("user://resources/"+data[tick].file_name, data[tick].link, data[tick].file_name)
 			else:
+				dir.open("user://resources/"+data[tick].file_name)
+				dir.list_dir_begin()
+				var f2 = dir.get_next()
+				dir.remove("user://resources/"+data[tick].file_name+"/"+f2)
 				print("Unziping file...")
 				var output = []
 				var p = define_path()
@@ -27,7 +31,15 @@ func read_data_to_download():
 				var x = define_path()+"/resources/"+data[tick].file_name
 				if not(dir.dir_exists(x)):
 					print("ERR:UPDATER_DIR NOT FOUND!")
-				OS.execute("unzip", [p, "-d", x], true, output)
+				if(OS.get_name() == "X11" or OS.get_name() == "OSX"):
+					OS.execute("unzip", [p, "-d", x], true, output)
+				elif(OS.get_name() == "Windows"):
+					OS.execute(
+						'start',
+						[OS.get_user_data_dir()+"/packages/unzip/windows/unzip.exe", p, '-d', x],
+						true,
+						output
+					)
 				for line in output:
 					print(line)
 				
@@ -35,8 +47,8 @@ func read_data_to_download():
 				dir.list_dir_begin()
 				var f = dir.get_next()
 				OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+data[0].file_name+"/"+f])
-				write_file(OS.get_user_data_dir()+"/resources/"+data[0].file_name+"/"+"start.sh", "string", "#!/bin/sh\rcd "+OS.get_user_data_dir()+"/resources/"+data[0].file_name+"\r./"+f)
-				OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+data[0].file_name+"/start.sh"], false)
+				#write_file(OS.get_user_data_dir()+"/resources/"+data[0].file_name+"/"+"start.sh", "string", "#!/bin/sh\rcd "+OS.get_user_data_dir()+"/resources/"+data[0].file_name+"\r./"+f)
+				#OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+data[0].file_name+"/start.sh"], false)
 				
 				if not(dir.file_exists("user://data/installed/"+data[0].file_name+".list")):
 					add_installed(data[0].file_name, "user://resources/"+data[0].file_name)
@@ -156,7 +168,16 @@ func _on_request_completed(result, response_code, headers, body):
 				var x = define_path()+"/resources/"+all_data[0].file
 				if not(dir.dir_exists(x)):
 					print("ERR:UPDATER_DIR NOT FOUND!")
-				OS.execute("unzip", [p, "-d", x], true, output)
+				if(OS.get_name() == "X11" or OS.get_name() == "OSX"):
+					OS.execute("unzip", [p, "-d", x], true, output)
+				elif(OS.get_name() == "Windows"):
+					OS.execute(
+						'start',
+						[OS.get_user_data_dir()+"/packages/unzip/windows/unzip.exe", p, '-d', x],
+						true,
+						output
+					)
+				#unzip(p, x, all_data[0].file+".64")
 				for line in output:
 					print(line)
 				
@@ -164,8 +185,8 @@ func _on_request_completed(result, response_code, headers, body):
 				dir.list_dir_begin()
 				var f = dir.get_next()
 				OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/"+f])
-				write_file(OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/"+"start.sh", "string", "#!/bin/sh\rcd "+OS.get_user_data_dir()+"/resources/"+all_data[0].file+"\r./"+f)
-				OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/start.sh"], false)
+				#write_file(OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/"+"start.sh", "string", "#!/bin/sh\rcd "+OS.get_user_data_dir()+"/resources/"+all_data[0].file+"\r./"+f)
+				#OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/start.sh"], false)
 				add_installed(all_data[0].file, all_data[0].dir)
 			all_data.remove(0)
 	w = false
@@ -179,7 +200,9 @@ func define_path():
 
 func add_installed(version, path):
 	var list = {"version":version, "path":path}
-	write_file("user://data/installed/"+version+".list", "json", list)
+	var d = Directory.new()
+	if not(d.file_exists("user://data/installed/"+version+".list")):
+		write_file("user://data/installed/"+version+".list", "json", list)
 	
 	
 onready var time = OS.get_system_time_msecs()
@@ -208,3 +231,11 @@ func load_lang():
 	lang = read_file("user://lang/"+i.lang+".lang", "json")
 	$Panel/Label.text = lang.updater_1_panel_start
 	$Panel2/Label.text = lang.updater_2_panel
+
+func unzip(path, to_path, file_name):
+	var unzip = load("res://GDNative/gdunzip-master/addons/gdunzip/gdunzip.gd").new()
+	var zip_file = unzip.load(path)
+	for f in unzip.files:
+		print(f)
+		var uc = unzip.uncompress(f)
+		write_file(to_path+"/"+file_name, "buffer", uc)

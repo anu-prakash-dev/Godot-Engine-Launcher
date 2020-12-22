@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/updater.gd" type="Script" id=1]
+[ext_resource path="res://textures/design/theme.tres" type="Theme" id=2]
 
 [node name="updater" type="Node2D"]
 script = ExtResource( 1 )
@@ -19,6 +20,7 @@ margin_left = 88.5369
 margin_top = 135.473
 margin_right = 136.537
 margin_bottom = 155.473
+theme = ExtResource( 2 )
 text = "Ok"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -29,6 +31,7 @@ margin_left = 10.9423
 margin_top = 91.326
 margin_right = 214.942
 margin_bottom = 122.326
+theme = ExtResource( 2 )
 text = "Resources will be downloaded!"
 align = 1
 __meta__ = {
@@ -48,10 +51,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Panel2"]
-margin_left = 39.6427
-margin_top = 103.826
-margin_right = 185.643
-margin_bottom = 117.826
+margin_left = 15.5884
+margin_top = 84.2262
+margin_right = 194.588
+margin_bottom = 103.226
+theme = ExtResource( 2 )
 text = "Updater started work..."
 align = 1
 __meta__ = {

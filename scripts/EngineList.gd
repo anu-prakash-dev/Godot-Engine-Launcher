@@ -69,3 +69,4 @@ func load_lang():
 	$Panel/Settings/GUI/Panel/Runner/Label2.text = lang.settings_2_1
 	$Panel/Settings/GUI/Panel/Updater/Label2.text = lang.settings_2_2
 	$Panel/LOG_GUI/Panel/copy.text = lang.copy
+	$Panel/Tab/Installed/GUI/Label.text = lang.list_nothing

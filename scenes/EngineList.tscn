@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/EngineList.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Exit.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://scripts/Settings.gd" type="Script" id=13]
 [ext_resource path="res://scripts/Back without saving.gd" type="Script" id=14]
 [ext_resource path="res://scripts/LOG_GUI.gd" type="Script" id=15]
+[ext_resource path="res://textures/design/theme.tres" type="Theme" id=16]
 
 [node name="EngineList" type="Node2D"]
 script = ExtResource( 1 )
@@ -22,6 +23,7 @@ script = ExtResource( 1 )
 [node name="Panel" type="Panel" parent="."]
 margin_right = 1000.0
 margin_bottom = 600.0
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,6 +78,7 @@ margin_left = 17.3386
 margin_top = 16.0
 margin_right = 127.339
 margin_bottom = 56.0
+theme = ExtResource( 16 )
 text = "Installed"
 script = ExtResource( 4 )
 __meta__ = {
@@ -94,6 +97,7 @@ margin_left = 851.0
 margin_top = 73.0
 margin_right = 959.0
 margin_bottom = 112.0
+theme = ExtResource( 16 )
 text = "Run"
 script = ExtResource( 8 )
 __meta__ = {
@@ -105,6 +109,7 @@ margin_left = 850.295
 margin_top = 119.035
 margin_right = 958.295
 margin_bottom = 158.035
+theme = ExtResource( 16 )
 text = "Reinstall"
 script = ExtResource( 10 )
 __meta__ = {
@@ -117,6 +122,7 @@ margin_left = 850.117
 margin_top = 166.098
 margin_right = 958.117
 margin_bottom = 205.098
+theme = ExtResource( 16 )
 text = "Remove"
 script = ExtResource( 9 )
 __meta__ = {
@@ -128,13 +134,21 @@ margin_left = 324.196
 margin_top = 86.876
 margin_right = 505.196
 margin_bottom = 100.876
+theme = ExtResource( 16 )
 text = "Actually nothing is installed."
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ItemList" type="ItemList" parent="Panel/Tab/Installed/GUI"]
+margin_left = 5.0
 margin_top = 74.0
-margin_right = 824.0
+margin_right = 830.0
 margin_bottom = 567.0
+theme = ExtResource( 16 )
 allow_reselect = true
+max_text_lines = 2
+auto_height = true
 max_columns = 10
 icon_mode = 0
 icon_scale = 0.5
@@ -144,10 +158,11 @@ __meta__ = {
 }
 
 [node name="to_download" type="Button" parent="Panel/Tab"]
-margin_left = 134.0
-margin_top = 15.0
-margin_right = 252.0
-margin_bottom = 56.0
+margin_left = 862.67
+margin_top = 11.3137
+margin_right = 980.67
+margin_bottom = 52.3137
+theme = ExtResource( 16 )
 text = "All"
 script = ExtResource( 5 )
 __meta__ = {
@@ -156,8 +171,10 @@ __meta__ = {
 
 [node name="GUI" type="Control" parent="Panel/Tab/to_download"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = -730.0
+margin_top = 5.0
+margin_right = -690.0
+margin_bottom = 45.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -167,6 +184,7 @@ margin_left = 734.339
 margin_top = 74.0
 margin_right = 842.339
 margin_bottom = 113.0
+theme = ExtResource( 16 )
 text = "Install"
 script = ExtResource( 7 )
 __meta__ = {
@@ -179,7 +197,9 @@ margin_top = 72.0
 margin_right = 1072.0
 margin_bottom = 786.0
 rect_scale = Vector2( 0.7, 0.7 )
+theme = ExtResource( 16 )
 allow_reselect = true
+auto_height = true
 max_columns = 10
 icon_mode = 0
 icon_scale = 0.5
@@ -193,6 +213,7 @@ margin_left = 868.339
 margin_top = 538.492
 margin_right = 976.339
 margin_bottom = 577.492
+theme = ExtResource( 16 )
 text = "Exit"
 script = ExtResource( 2 )
 __meta__ = {
@@ -204,6 +225,7 @@ margin_left = 868.339
 margin_top = 484.978
 margin_right = 976.339
 margin_bottom = 523.978
+theme = ExtResource( 16 )
 text = "Settings"
 script = ExtResource( 13 )
 __meta__ = {
@@ -233,15 +255,17 @@ margin_left = -772.449
 margin_top = -441.959
 margin_right = 27.5508
 margin_bottom = 58.0407
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Back without saving" type="Button" parent="Panel/Settings/GUI/Panel"]
-margin_left = 652.377
-margin_top = 470.671
-margin_right = 790.377
-margin_bottom = 490.671
+margin_left = 622.54
+margin_top = 469.549
+margin_right = 789.54
+margin_bottom = 494.549
+theme = ExtResource( 16 )
 text = "Back without saving"
 script = ExtResource( 14 )
 __meta__ = {
@@ -249,20 +273,22 @@ __meta__ = {
 }
 
 [node name="Back with saving" type="Button" parent="Panel/Settings/GUI/Panel"]
-margin_left = 652.377
-margin_top = 443.702
-margin_right = 790.377
-margin_bottom = 463.702
+margin_left = 646.765
+margin_top = 436.967
+margin_right = 787.765
+margin_bottom = 461.967
+theme = ExtResource( 16 )
 text = "Back with saving"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Save" type="Button" parent="Panel/Settings/GUI/Panel"]
-margin_left = 652.377
-margin_top = 417.702
-margin_right = 790.377
-margin_bottom = 437.702
+margin_left = 647.887
+margin_top = 405.355
+margin_right = 785.887
+margin_bottom = 430.355
+theme = ExtResource( 16 )
 text = "Save"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -275,10 +301,11 @@ width = 5.0
 
 [node name="main" type="Label" parent="Panel/Settings/GUI/Panel"]
 margin_left = 313.955
-margin_top = 8.48527
-margin_right = 364.955
-margin_bottom = 22.4853
+margin_top = -8.50448
+margin_right = 377.955
+margin_bottom = 10.4955
 rect_scale = Vector2( 3, 3 )
+theme = ExtResource( 16 )
 text = "Settings"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -294,10 +321,11 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Panel/Settings/GUI/Panel/Runner"]
 margin_left = 155.173
-margin_top = 66.7106
-margin_right = 200.173
-margin_bottom = 80.7106
+margin_top = 61.0473
+margin_right = 209.173
+margin_bottom = 80.0473
 rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 16 )
 text = "Runner"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -312,6 +340,7 @@ margin_left = 18.8988
 margin_top = 120.952
 margin_right = 246.899
 margin_bottom = 134.952
+theme = ExtResource( 16 )
 text = "Close launcher when godot starting:
 
 Record godot logs:
@@ -323,10 +352,11 @@ __meta__ = {
 
 [node name="cgs" type="Button" parent="Panel/Settings/GUI/Panel/Runner"]
 modulate = Color( 0, 1, 0, 1 )
-margin_left = 372.272
-margin_top = 113.104
-margin_right = 392.272
-margin_bottom = 133.104
+margin_left = 368.905
+margin_top = 119.839
+margin_right = 389.905
+margin_bottom = 144.839
+theme = ExtResource( 16 )
 text = "+"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -334,17 +364,19 @@ __meta__ = {
 
 [node name="rgl" type="Button" parent="Panel/Settings/GUI/Panel/Runner"]
 modulate = Color( 0, 1, 0, 1 )
-margin_left = 371.567
-margin_top = 149.879
-margin_right = 391.567
-margin_bottom = 169.879
+margin_left = 368.2
+margin_top = 166.716
+margin_right = 389.2
+margin_bottom = 191.716
+theme = ExtResource( 16 )
 text = "+"
 
 [node name="lang" type="ItemList" parent="Panel/Settings/GUI/Panel/Runner"]
-margin_left = 86.0
-margin_top = 185.0
-margin_right = 389.0
-margin_bottom = 253.0
+margin_left = 99.8591
+margin_top = 203.899
+margin_right = 402.859
+margin_bottom = 271.899
+theme = ExtResource( 16 )
 items = [ "pl", null, false, "en", null, false ]
 allow_reselect = true
 auto_height = true
@@ -360,10 +392,11 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Panel/Settings/GUI/Panel/Updater"]
 margin_left = 155.173
-margin_top = 66.7106
-margin_right = 200.173
-margin_bottom = 80.7106
+margin_top = 61.0474
+margin_right = 218.173
+margin_bottom = 80.0474
 rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 16 )
 text = "Updater"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -378,6 +411,7 @@ margin_left = 18.8988
 margin_top = 120.952
 margin_right = 246.899
 margin_bottom = 134.952
+theme = ExtResource( 16 )
 text = "Download chunk size:
 
 Update resources.list: <Unavailable>
@@ -387,10 +421,11 @@ Download last version of Godot: <Unavailable>
 Update launcher when update is available: <Unavailable>"
 
 [node name="DCS" type="Button" parent="Panel/Settings/GUI/Panel/Updater"]
-margin_left = 164.111
-margin_top = 116.542
-margin_right = 208.111
-margin_bottom = 136.542
+margin_left = 347.249
+margin_top = 117.731
+margin_right = 395.249
+margin_bottom = 142.731
+theme = ExtResource( 16 )
 text = "8192"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -419,6 +454,7 @@ margin_left = -746.0
 margin_top = -2.0
 margin_right = -15.0
 margin_bottom = 452.0
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -429,6 +465,7 @@ margin_top = 4.5659
 margin_right = 377.24
 margin_bottom = 18.5659
 rect_scale = Vector2( 3, 3 )
+theme = ExtResource( 16 )
 text = "Log"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -444,6 +481,7 @@ margin_left = 22.0
 margin_top = 74.0
 margin_right = 722.0
 margin_bottom = 380.0
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -458,6 +496,7 @@ margin_left = 338.885
 margin_top = 399.182
 margin_right = 384.885
 margin_bottom = 426.182
+theme = ExtResource( 16 )
 text = "Ok"
 
 [node name="copy" type="Button" parent="Panel/LOG_GUI/Panel"]
@@ -465,6 +504,7 @@ margin_left = 25.3984
 margin_top = 404.787
 margin_right = 92.3984
 margin_bottom = 424.787
+theme = ExtResource( 16 )
 text = "Copy"
 __meta__ = {
 "_edit_use_anchors_": false

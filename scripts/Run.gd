@@ -14,20 +14,33 @@ func _process(_delta):
 			dir.list_dir_begin()
 			var f = dir.get_next()
 			print(f)
-			print("."+OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f)
+			print(""+OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f)
 			#OS.shell_open("."+OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f)
 			var output = []
 			#OS.execute("cd", [OS.get_user_data_dir()+"/resources/"+sltd.file_name], true, output)
 			#OS.execute("chmod", ["+x", ""+OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f], false)
 			#OS.execute("cd", ["'"+OS.get_user_data_dir()+"/resources/"+sltd.file_name+"'"], false)
 			print("-|-")
-			print(read_file(OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/start.sh", ""))
+			#print(read_file(OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/start.sh", ""))
 			if(set1.record_logs == false):
-				OS.execute(
-				'/usr/bin/env',
-				[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
-				false
-				)
+				if(OS.get_name() == "X11"):
+					OS.execute(
+					'/usr/bin/env',
+					[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+					false
+					)
+				elif(OS.get_name() == "OSX"):
+					OS.execute(
+						'/user/bin/env',
+						[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+						false
+					)
+				elif(OS.get_name() == "Windows"):
+					OS.execute(
+						'start',
+						[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+						false
+					)
 			else:
 				OS.window_borderless = true
 				OS.window_size.x = 1
@@ -35,12 +48,31 @@ func _process(_delta):
 				OS.window_position.x = 1
 				OS.window_position.y = 1
 				print("\n'"+sltd.file_name+"' OUTPUT:")
-				OS.execute(
-				'/usr/bin/env',
-				[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
-				true, output
-				)
+				if(OS.get_name() == "X11"):
+					OS.execute(
+					'/usr/bin/env',
+					[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+					true, output
+					)
+				elif(OS.get_name() == "OSX"):
+					OS.execute(
+					'/usr/bin/env',
+					[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+					true, output
+					)
+				elif(OS.get_name() == "Windows"):
+					OS.execute(
+						'start',
+						[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+						true,
+						output
+					)
+				make_dir("user://resources/"+sltd.file_name+"_logs")
+				var path = "user://resources/"+sltd.file_name+"_logs/"+sltd.file_name+"_log%d"%(OS.get_system_time_secs()/10000)+".log"
+				if not(dir.file_exists(path)):
+					write_file(path, "", "")
 				for line in output:
+					write_file(path, "", read_file(path, "")+line+"\n")
 					print(line)
 				
 				OS.window_borderless = false
@@ -49,10 +81,7 @@ func _process(_delta):
 				var s = OS.get_screen_size()
 				var w = OS.get_window_size()
 				OS.set_window_position(s*0.5 - w*0.5)
-				var log2 = make_log(output)
-				make_dir("user://resources/"+sltd.file_name+"_logs")
-				write_file("user://resources/"+sltd.file_name+"_logs/"+sltd.file_name+"_log%d"%(OS.get_system_time_secs()/10000)+".log", "json", make_log(output))
-				#get_tree().get_root().get_node("EngineList/LOG_GUI").show2(log2)
+				get_tree().get_root().get_node("EngineList/Panel/LOG_GUI").show2(read_file(path, ""))
 			if(set1.close_launcher == true):
 				get_tree().quit()
 		a1 = false

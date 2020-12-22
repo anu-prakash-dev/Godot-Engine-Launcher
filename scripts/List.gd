@@ -35,15 +35,19 @@ func _ready():
 	var dir = Directory.new()
 	dir.open("user://data/installed")
 	dir.list_dir_begin()
+	var res = read_file("user://data/resources.list", "var")
 	var t = 0
 	var f = dir.get_next()
+	#print(res)
 	while not(f == ""):
 		if not(f == "." or f == ".."):
 			var data = read_file("user://data/installed/"+f, "json")
+			print(data)
 			if not(data == null):
-				if(OS.get_name() == "X11"):
-					list += [{"file_name":data.version, "path":data.path}]
-				add_item(data.version, load("res://textures/godot.png"), true)
+				var d = data.version
+				print(d)
+				list += [{"file_name":data.version, "path":data.path}]
+				add_item(""+data.version, load("res://textures/godot.png"), true)
 		f = dir.get_next()
 
 func _on_ItemList_item_selected(index):

@@ -8,6 +8,7 @@ func _ready():
 func _process(_delta):
 	if(self.pressed):
 		$GUI.visible = true
+		load_settings()
 	if($GUI/Panel/Save.pressed):
 		save_settings()
 	if(get_node("GUI/Panel/Back with saving").pressed):
