@@ -1,6 +1,6 @@
 ## Godot Engine Launcher
 
-The launcher to manage Godot versions.
+The launcher to download and manage Godot versions.
 
 ### Informations
 
