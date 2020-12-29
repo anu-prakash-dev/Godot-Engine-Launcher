@@ -53,3 +53,5 @@ func _ready():
 		tick += 1
 func _on_ItemList_item_selected(index):
 	get_tree().get_root().get_node("EngineList/Panel/Tab/to_download/GUI/Install").sltd = list[index]
+
+

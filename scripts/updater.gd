@@ -35,8 +35,8 @@ func read_data_to_download():
 					OS.execute("unzip", [p, "-d", x], true, output)
 				elif(OS.get_name() == "Windows"):
 					OS.execute(
-						'start',
-						[OS.get_user_data_dir()+"/packages/unzip/windows/unzip.exe", p, '-d', x],
+						'compact',
+						['/U', '/I', "/F", "/Q", p],
 						true,
 						output
 					)
@@ -70,6 +70,7 @@ func _ready():
 
 func _process(_delta):
 	file_init()
+	t_out()
 	download_info()
 	#check_ping()
 	if(get_node("Panel/ok").pressed):
@@ -92,8 +93,6 @@ func file_init():
 			print("Failed to connect to FTP server:\n"+status)
 			get_node("Panel/Label").text = lang.updater_1_panel_failed
 			get_node("Panel/ok").text = lang.updater_1_panel_failed1
-			while not(list_to_download.size() == 0):
-				list_to_download.remove(0)
 			while not(all_data.size() == 0):
 				all_data.remove(0)
 			get_node("Panel").visible = true
@@ -172,8 +171,8 @@ func _on_request_completed(result, response_code, headers, body):
 					OS.execute("unzip", [p, "-d", x], true, output)
 				elif(OS.get_name() == "Windows"):
 					OS.execute(
-						'start',
-						[OS.get_user_data_dir()+"/packages/unzip/windows/unzip.exe", p, '-d', x],
+						'compact',
+						['/U', '/I', '/F', '/Q', p],
 						true,
 						output
 					)
@@ -232,10 +231,13 @@ func load_lang():
 	$Panel/Label.text = lang.updater_1_panel_start
 	$Panel2/Label.text = lang.updater_2_panel
 
-func unzip(path, to_path, file_name):
-	var unzip = load("res://GDNative/gdunzip-master/addons/gdunzip/gdunzip.gd").new()
-	var zip_file = unzip.load(path)
-	for f in unzip.files:
-		print(f)
-		var uc = unzip.uncompress(f)
-		write_file(to_path+"/"+file_name, "buffer", uc)
+func t_out():
+	if(w == true):
+		if($HTTPRequest.timeout):
+			print("Connection timed out!")
+			get_node("Panel/Label").text = lang.updater_1_panel_failed
+			get_node("Panel/ok").text = lang.updater_1_panel_failed1
+			while not(all_data.size() == 0):
+				all_data.remove(0)
+			get_node("Panel").visible = true
+			get_node("Panel2").visible = false

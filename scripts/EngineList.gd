@@ -70,3 +70,7 @@ func load_lang():
 	$Panel/Settings/GUI/Panel/Updater/Label2.text = lang.settings_2_2
 	$Panel/LOG_GUI/Panel/copy.text = lang.copy
 	$Panel/Tab/Installed/GUI/Label.text = lang.list_nothing
+	get_node("Panel/Tab/to_download/GUI/Add-maunal").text = lang.af
+	$Panel/import/Panel/back.text = lang.back
+	$Panel/import/Panel/info.text = lang.np
+	

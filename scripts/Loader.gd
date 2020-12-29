@@ -1,51 +1,31 @@
 extends Node2D
 
+const version = "1.2"
+
 func _ready():
+	var d = Directory.new()
 	OS.set_window_title("Godot Engine Launcher")
 	make_dir("user://data")
 	make_dir("user://resources")
 	make_dir("user://data/installed")
 	make_dir("user://options")
 	make_dir("user://lang")
+	if not(d.file_exists("user://options/version.settings")):
+		write_file("user://options/version.settings", "", version)
+		write_file("user://options/updater.settings", "json", {"chunk_size":8192})
+		write_file("user://options/runner.settings", "json", {"close_launcher":true, "record_logs":false})
+		write_file("user://options/lang.settings", "json", {"lang":"en"})
+		d.remove("user://lang/pl.lang")
+		d.remove("user://lang/en.lang")
 	installer()
 	#write_file("user://data/godot.png", "image", read_file("res://textures/godot.png", "image"))
-	var data = [{"a1":"1.1",
- "lb1":"https://downloads.tuxfamily.org/godotengine/1.1/Godot_v1.1_stable_x11.64.zip",
- "wb1":"https://downloads.tuxfamily.org/godotengine/1.1/Godot_v1.1_stable_win64.exe.zip",
- "mb1":""
-}, {"a1":"2.0",
- "lb1":"https://downloads.tuxfamily.org/godotengine/2.0/Godot_v2.0_stable_x11.64.zip",
- "wb1":"https://downloads.tuxfamily.org/godotengine/2.0/Godot_v2.0_stable_win64.exe.zip",
- "mb1":""
-}, {"a1":"2.1",
- "lb1":"https://downloads.tuxfamily.org/godotengine/2.1/Godot_v2.1-stable_x11.64.zip",
- "wb1":"https://downloads.tuxfamily.org/godotengine/2.1/Godot_v2.1-stable_win64.exe.zip",
- "mb1":""
-}, {"a1":"2.1.7",
- "lb1":"https://downloads.tuxfamily.org/godotengine/2.1.7/rc/20200815/Godot_v2.1.7-rc_20200815_x11.64.zip",
- "wb1":"https://downloads.tuxfamily.org/godotengine/2.1.7/rc/20200815/Godot_v2.1.7-rc_20200815_win64.exe.zip",
- "mb1":"https://downloads.tuxfamily.org/godotengine/2.1.7/rc/20200815/Godot_v2.1.7-rc_20200815_osx.64.zip"
-}, {"a1":"3.0",
- "lb1":"https://downloads.tuxfamily.org/godotengine/3.0/Godot_v3.0-stable_x11.64.zip",
- "wb1":"https://downloads.tuxfamily.org/godotengine/3.0/Godot_v3.0-stable_win64.exe.zip", "mb1":""}, {
- "a1":"3.1",
- "lb1":"https://downloads.tuxfamily.org/godotengine/3.1/Godot_v3.1-stable_x11.64.zip",
- "wb1":"https://downloads.tuxfamily.org/godotengine/3.1/Godot_v3.1-stable_win64.exe.zip",
- "mb1":"https://downloads.tuxfamily.org/godotengine/3.1/Godot_v3.1-stable_osx.64.zip"}, {
- "a1":"3.2",
- "lb1":"https://downloads.tuxfamily.org/godotengine/3.2/Godot_v3.2-stable_x11.64.zip",
- "wb1":"https://downloads.tuxfamily.org/godotengine/3.2/Godot_v3.2-stable_win64.exe.zip",
- "mb1":"https://downloads.tuxfamily.org/godotengine/3.2/Godot_v3.2-stable_osx.64.zip"}, {
- "a1":"3.2.3",
- "lb1":"https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_x11.64.zip",
- "wb1":"https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_win64.exe.zip",
- "mb1":"https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_osx.64.zip"}, {
- "a1":"3.2.4 Beta 4",
- "lb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta4/Godot_v3.2.4-beta4_x11.64.zip",
- "wb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta4/Godot_v3.2.4-beta4_win64.exe.zip",
- "mb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta4/Godot_v3.2.4-beta4_osx.universal.zip"
- }]
-	var d = Directory.new()
+	var res_data = load("res://scripts/data/resources_data.gd").new()
+	var data = res_data.data
+	#print(data)
+	if(d.file_exists("user://options/version.settings")):
+		var dd = read_file("user://options/version.settings", "")
+		if not(dd == version):
+			get_tree().change_scene("res://scenes/clearprefix.tscn")
 	if not(d.file_exists("user://data/resources.list")):
 		write_file("user://data/resources.list", "var", data)
 	if not(d.file_exists("user://lang/pl.lang")):
@@ -69,7 +49,11 @@ func _ready():
 		"settings_b_wo_s":"Wróć bez zapisu",
 		"settings_b_w_s":"Zapisz i wróć",
 		"copy":"Kopiuj",
-		"list_nothing":"Aktualnie nic nie jest zainstalowane."
+		"list_nothing":"Aktualnie nic nie jest zainstalowane.",
+		"af":"Importuj",
+		"back":"Wróć",
+		"np":"Nazwa:\n\nŚcieżka:",
+		"paste":"Wklej"
 		})
 	if not(d.file_exists("user://lang/en.lang")):
 		write_file("user://lang/en.lang", "json", {
@@ -93,14 +77,13 @@ func _ready():
 		"settings_b_wo_s":"Back without save",
 		"settings_b_w_s":"Back with save",
 		"copy":"Copy",
-		"list_nothing":"Actually nothing is installed."
+		"list_nothing":"Actually nothing is installed.",
+		"af":"Add from file",
+		"back":"Back",
+		"np":"Name:\n\nPath:",
+		"paste":"Paste"
 		})
-	if not(d.file_exists("user://options/lang.settings")):
-		write_file("user://options/lang.settings", "json", {"lang":"en"})
-	if not(d.file_exists("user://options/runner.settings")):
-		write_file("user://options/runner.settings", "json", {"close_launcher":true, "record_logs":false})
-	if not(d.file_exists("user://options/updater.settings")):
-		write_file("user://options/updater.settings", "json", {"chunk_size":8192})
+
 	get_tree().change_scene("res://scenes/EngineList.tscn")
 
 func make_dir(path):
@@ -151,7 +134,8 @@ func installer():
 	if(OS.get_name() == "Windows"):
 		print("Running app on Windows:")
 		make_dir("user://packages/unzip/windows")
-		write_file("user://packages/unzip/windows/unzip.exe", "buffer", read_file("res://packages/unzip/windows/bin/unzip.exe", "buffer"))
+		var dir = Directory.new()
+		dir.copy("res://packages/unzip/windows/bin/unzip.exe", "user://packages/unzip/windows/unzip.exe")
 	elif(OS.get_name() == "X11"):
 		print("Running app on Linux/X11:")
 		make_dir("user://packages/unzip/linux")

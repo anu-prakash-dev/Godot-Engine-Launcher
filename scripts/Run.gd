@@ -13,8 +13,13 @@ func _process(_delta):
 			dir.open(OS.get_user_data_dir()+"/resources/"+sltd.file_name)
 			dir.list_dir_begin()
 			var f = dir.get_next()
-			print(f)
-			print(""+OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f)
+			var dd = ""
+			while not(f == ""):
+				if not(f == "." or f == ".."):
+					dd = f
+				f = dir.get_next()
+			print(dd)
+			print(""+OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+dd)
 			#OS.shell_open("."+OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f)
 			var output = []
 			#OS.execute("cd", [OS.get_user_data_dir()+"/resources/"+sltd.file_name], true, output)
@@ -26,19 +31,19 @@ func _process(_delta):
 				if(OS.get_name() == "X11"):
 					OS.execute(
 					'/usr/bin/env',
-					[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+					[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+dd, '-p'],
 					false
 					)
 				elif(OS.get_name() == "OSX"):
 					OS.execute(
 						'/user/bin/env',
-						[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+						[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+dd, '-p'],
 						false
 					)
 				elif(OS.get_name() == "Windows"):
 					OS.execute(
 						'start',
-						[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
+						[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+dd, '-p'],
 						false
 					)
 			else:
