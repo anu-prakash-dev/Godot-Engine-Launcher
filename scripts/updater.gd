@@ -20,6 +20,8 @@ func read_data_to_download():
 				dir.open("user://resources/"+data[tick].file_name)
 				dir.list_dir_begin()
 				var f2 = dir.get_next()
+				#f2 = dir.get_next()
+				print(f2)
 				dir.remove("user://resources/"+data[tick].file_name+"/"+f2)
 				print("Unziping file...")
 				var output = []
@@ -51,6 +53,7 @@ func read_data_to_download():
 				#OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+data[0].file_name+"/start.sh"], false)
 				
 				if not(dir.file_exists("user://data/installed/"+data[0].file_name+".list")):
+					
 					add_installed(data[0].file_name, "user://resources/"+data[0].file_name)
 				
 			tick += 1

@@ -15,7 +15,7 @@ func _process(_delta):
 			var f = dir.get_next()
 			var dd = ""
 			while not(f == ""):
-				if not(f == "." or f == ".."):
+				if not(f == "." or f == ".." or f.get_extension() == "zip"):
 					dd = f
 				f = dir.get_next()
 			print(dd)
