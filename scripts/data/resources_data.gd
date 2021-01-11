@@ -134,8 +134,8 @@ var data = [{"a1":"1.1",
  "lb1":"https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_x11.64.zip",
  "wb1":"https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_win64.exe.zip",
  "mb1":"https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_osx.64.zip"}, {
- "a1":"3.2.4 Beta 4",
- "lb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta4/Godot_v3.2.4-beta4_x11.64.zip",
- "wb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta4/Godot_v3.2.4-beta4_win64.exe.zip",
- "mb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta4/Godot_v3.2.4-beta4_osx.universal.zip"
+ "a1":"3.2.4 Beta 5",
+ "lb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta5/Godot_v3.2.4-beta5_x11.64.zip",
+ "wb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta5/Godot_v3.2.4-beta5_win64.exe.zip",
+ "mb1":"https://downloads.tuxfamily.org/godotengine/3.2.4/beta5/Godot_v3.2.4-beta5_osx.universal.zip"
  }]

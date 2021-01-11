@@ -19,7 +19,7 @@ config/name="Godot_Engine_Launcher"
 config/description="App to manage Godot versions, maded in Godot."
 run/main_scene="res://scenes/Loader.tscn"
 config/custom_user_dir_name="/home/gameplayer"
-boot_splash/image="res://textures/boot.png"
+boot_splash/image="res://textures/updater-texture.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://godot.png"
 
