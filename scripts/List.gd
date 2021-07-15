@@ -56,3 +56,4 @@ func _on_ItemList_item_selected(index):
 	get_tree().get_root().get_node("EngineList/Panel/Tab/Installed/GUI/Run").reload()
 	get_tree().get_root().get_node("EngineList/Panel/Tab/Installed/GUI/Remove").reload()
 	get_tree().get_root().get_node("EngineList/Panel/Tab/Installed/GUI/Reinstall").sltd = list[index]
+	get_tree().get_root().get_node("EngineList/Panel/Tab/Installed/GUI/Shortcut").sltd = list[index]

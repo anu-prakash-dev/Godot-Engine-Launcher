@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scripts/EngineList.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Exit.gd" type="Script" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://scripts/info.gd" type="Script" id=24]
 [ext_resource path="res://scripts/license_button.gd" type="Script" id=25]
 [ext_resource path="res://scripts/License.gd" type="Script" id=26]
+[ext_resource path="res://scripts/Shortcut.gd" type="Script" id=27]
 
 [node name="EngineList" type="Node2D"]
 script = ExtResource( 1 )
@@ -114,10 +115,10 @@ __meta__ = {
 }
 
 [node name="Reinstall" type="Button" parent="Panel/Tab/Installed/GUI"]
-margin_left = 850.295
-margin_top = 119.035
-margin_right = 958.295
-margin_bottom = 158.035
+margin_left = 851.63
+margin_top = 119.702
+margin_right = 959.63
+margin_bottom = 158.702
 theme = ExtResource( 16 )
 text = "Reinstall"
 script = ExtResource( 10 )
@@ -125,12 +126,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Shortcut" type="Button" parent="Panel/Tab/Installed/GUI"]
+visible = false
+margin_left = 851.667
+margin_top = 163.33
+margin_right = 958.667
+margin_bottom = 204.33
+text = "Shortcut:off"
+script = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Remove" type="Button" parent="Panel/Tab/Installed/GUI"]
 modulate = Color( 0.984314, 0.00784314, 0.00784314, 1 )
-margin_left = 850.117
-margin_top = 166.098
-margin_right = 958.117
-margin_bottom = 205.098
+margin_left = 851.685
+margin_top = 210.595
+margin_right = 959.685
+margin_bottom = 249.595
 theme = ExtResource( 16 )
 text = "Remove"
 script = ExtResource( 9 )
