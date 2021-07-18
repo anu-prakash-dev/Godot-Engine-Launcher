@@ -1,5 +1,13 @@
 extends Node2D
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
+
+# here's startup node to generate launcher filesystem | intialize OS info
 const version = "1.2"
 
 func _ready():

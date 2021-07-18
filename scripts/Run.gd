@@ -1,6 +1,13 @@
 extends Button
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
 
+# here's button script to launch Godot Engine version
 var sltd = {"path":null, "file_name":null}
 var a1 = true
 onready var time = OS.get_system_time_msecs()

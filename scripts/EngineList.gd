@@ -1,5 +1,14 @@
 extends Node2D
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
+
+
+# here's scene node to load language | setup main gui
 var resources = null
 var installed = null
 

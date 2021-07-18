@@ -1,6 +1,14 @@
 extends Button
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
 
+
+# here's button to switch main gui to Installed list
 func _process(delta):
 	if(self.pressed):
 		get_node("GUI").visible = true

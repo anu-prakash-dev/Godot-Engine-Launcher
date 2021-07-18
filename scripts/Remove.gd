@@ -1,6 +1,13 @@
 extends Button
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
 
+# here's button script to fix issues with downloaded files - fix patch
 var sltd = {"path":null, "file_name":null}
 
 func _process(_delta):

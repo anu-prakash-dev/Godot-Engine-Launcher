@@ -1,5 +1,13 @@
 extends Control
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
+
+# here's Control node to set runner options
 var set1 = true
 var set2 = true
 var a1 = true

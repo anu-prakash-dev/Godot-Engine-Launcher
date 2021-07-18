@@ -1,5 +1,13 @@
 extends Button
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
+
+# here's button to load clearprefix scene (to fix prefix)
 func _process(delta):
 	if(self.pressed):
 		clear()

@@ -1,5 +1,13 @@
 extends Control
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
+
+# here's COntrol node to set updater options
 var dcs = 8192
 var a = 0
 onready var time = OS.get_system_time_msecs()

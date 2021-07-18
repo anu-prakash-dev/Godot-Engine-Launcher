@@ -1,5 +1,13 @@
 extends Node2D
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
+
+# here's scene node script to configure Godot Engine versions
 var sltd = {"path":"user://resources/Godot_3.2.3", "file_name":"Godot_3.2.3"}
 
 func _ready():

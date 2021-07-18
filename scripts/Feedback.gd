@@ -1,5 +1,13 @@
 extends Control
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
+
+# here's control node to use feedback (actually feedback not working - feedback server stopped/doesn't exist)
 var subject = ""
 var contents = ""
 

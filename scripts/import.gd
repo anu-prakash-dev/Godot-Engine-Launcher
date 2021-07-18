@@ -1,6 +1,13 @@
 extends Panel
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
 
+# here's Panel code to add new Godot Engine version
 func _process(_delta):
 	if($Import.pressed):
 		add_installed($name.text, $path.text)

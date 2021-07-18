@@ -1,6 +1,18 @@
 extends Node
 
+###############################
+#   Copyright © GamePlayer    #
+#        2020 - 2021          #
+#   Godot Engine Launcher     #
+#    Opensource Project       #
+###############################
 
+
+# here's resource list of godot versions
+# a1 - version
+# lb1 - linux download link
+# wb1 - windows download link
+# mb1 - mac download link
 var data = [{"a1":"1.1",
  "lb1":"https://downloads.tuxfamily.org/godotengine/1.1/Godot_v1.1_stable_x11.64.zip",
  "wb1":"https://downloads.tuxfamily.org/godotengine/1.1/Godot_v1.1_stable_win64.exe.zip",
