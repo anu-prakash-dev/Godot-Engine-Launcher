@@ -14,8 +14,6 @@ func _process(_delta):
 	if(self.pressed):
 		if not(sltd.path == null):
 			var dir = Directory.new()
-			var file = File.new()
-			var list = []
 			dir.open("user://resources/"+sltd.file_name)
 			print("deleting files")
 			if not(dir.file_exists("godot.png")):
@@ -29,6 +27,7 @@ func _process(_delta):
 				dir.remove(sltd.file_name)
 			print("fixing issues")
 			dir.remove("user://data/installed/"+sltd.file_name+".list")
+# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://scenes/EngineList.tscn")
 func reload():
 	pass

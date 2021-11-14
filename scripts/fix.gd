@@ -8,9 +8,10 @@ extends Button
 ###############################
 
 # here's button to load clearprefix scene (to fix prefix)
-func _process(delta):
+func _process(_delta):
 	if(self.pressed):
 		clear()
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://scenes/Loader.tscn")
 
 

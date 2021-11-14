@@ -17,4 +17,5 @@ func _process(_delta):
 			file.open("user://data/to_download.data", File.WRITE)
 			file.store_line(to_json(sltd))
 			file.close()
+# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://scenes/updater.tscn")

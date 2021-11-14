@@ -9,7 +9,7 @@ extends Button
 
 
 # here's button to add unregistered Godot Engine version
-func _process(delta):
+func _process(_delta):
 	if(self.pressed):
 		get_tree().get_root().get_node("EngineList/Panel/import/Panel/name").text = "<name>"
 		get_tree().get_root().get_node("EngineList/Panel/import/Panel/path").text = OS.get_user_data_dir()

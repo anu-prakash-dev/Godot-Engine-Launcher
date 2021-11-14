@@ -9,7 +9,7 @@ extends Button
 
 
 # here's button to switch main gui to Installed list
-func _process(delta):
+func _process(_delta):
 	if(self.pressed):
 		get_node("GUI").visible = true
 		get_tree().get_root().get_node("EngineList/Panel/Tab/Installed/GUI").visible = false

@@ -43,8 +43,6 @@ func _ready():
 	var dir = Directory.new()
 	dir.open("user://data/installed")
 	dir.list_dir_begin()
-	var res = read_file("user://data/resources.list", "var")
-	var t = 0
 	var f = dir.get_next()
 	#print(res)
 	while not(f == ""):

@@ -8,6 +8,6 @@ extends Button
 ###############################
 
 # here's button to show up license
-func _process(delta):
+func _process(_delta):
 	if(self.pressed):
 		get_tree().get_root().get_node("EngineList/Panel/License").visible = true

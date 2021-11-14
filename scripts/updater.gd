@@ -42,8 +42,10 @@ func read_data_to_download():
 				if not(dir.dir_exists(x)):
 					print("ERR:UPDATER_DIR NOT FOUND!")
 				if(OS.get_name() == "X11" or OS.get_name() == "OSX"):
+# warning-ignore:return_value_discarded
 					OS.execute("unzip", [p, "-d", x], true, output)
 				elif(OS.get_name() == "Windows"):
+# warning-ignore:return_value_discarded
 					OS.execute(
 						'compact',
 						['/U', '/I', "/F", "/Q", p],
@@ -56,6 +58,7 @@ func read_data_to_download():
 				dir.open(OS.get_user_data_dir()+"/resources/"+data[0].file_name)
 				dir.list_dir_begin()
 				var f = dir.get_next()
+# warning-ignore:return_value_discarded
 				OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+data[0].file_name+"/"+f])
 				#write_file(OS.get_user_data_dir()+"/resources/"+data[0].file_name+"/"+"start.sh", "string", "#!/bin/sh\rcd "+OS.get_user_data_dir()+"/resources/"+data[0].file_name+"\r./"+f)
 				#OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+data[0].file_name+"/start.sh"], false)
@@ -73,8 +76,9 @@ func _ready():
 	OS.window_size.y = 100
 	OS.window_size.x = 200
 	var s = OS.get_screen_size()
-	var w = OS.get_window_size()
-	OS.set_window_position(s*0.5 - w*0.5)
+	var w2 = OS.get_window_size()
+	OS.set_window_position(s*0.5 - w2*0.5)
+# warning-ignore:return_value_discarded
 	$HTTPRequest.connect("request_completed", self, "_on_request_completed")
 	get_node("Panel").visible = true
 	get_node("Panel2").visible = false
@@ -109,6 +113,7 @@ func file_init():
 			get_node("Panel").visible = true
 			get_node("Panel2").visible = false
 	if(r == true and list_to_download.size() == 0 and all_data.size() == 0):
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://scenes/EngineList.tscn")
 func make_dir(path):
 	var dir = Directory.new()
@@ -157,7 +162,7 @@ func download_file(to_path, link, file_name):
 	all_data += [fast_data]
 	$HTTPRequest.request(link)
 	print("Downloading file '"+file_name+"' started! Link:\n"+link)
-func _on_request_completed(result, response_code, headers, body):
+func _on_request_completed(_result, _response_code, _headers, body):
 	print("Downloading successfull!")
 	if(all_data.size() > 0):
 		#var json = parse_json(body.get_string_from_utf8())
@@ -179,8 +184,10 @@ func _on_request_completed(result, response_code, headers, body):
 				if not(dir.dir_exists(x)):
 					print("ERR:UPDATER_DIR NOT FOUND!")
 				if(OS.get_name() == "X11" or OS.get_name() == "OSX"):
+# warning-ignore:return_value_discarded
 					OS.execute("unzip", [p, "-d", x], true, output)
 				elif(OS.get_name() == "Windows"):
+# warning-ignore:return_value_discarded
 					OS.execute(
 						'compact',
 						['/U', '/I', '/F', '/Q', p],
@@ -194,6 +201,7 @@ func _on_request_completed(result, response_code, headers, body):
 				dir.open(OS.get_user_data_dir()+"/resources/"+all_data[0].file)
 				dir.list_dir_begin()
 				var f = dir.get_next()
+# warning-ignore:return_value_discarded
 				OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/"+f])
 				#write_file(OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/"+"start.sh", "string", "#!/bin/sh\rcd "+OS.get_user_data_dir()+"/resources/"+all_data[0].file+"\r./"+f)
 				#OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/resources/"+all_data[0].file+"/start.sh"], false)

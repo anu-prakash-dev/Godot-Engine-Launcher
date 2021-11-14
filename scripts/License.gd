@@ -9,6 +9,6 @@ extends Control
 
 
 # just license
-func _process(delta):
+func _process(_delta):
 	if($GUI/back.pressed):
 		self.visible = false

@@ -36,18 +36,21 @@ func _process(_delta):
 			#print(read_file(OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/start.sh", ""))
 			if(set1.record_logs == false):
 				if(OS.get_name() == "X11"):
+# warning-ignore:return_value_discarded
 					OS.execute(
 					'/usr/bin/env',
 					[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+dd, '-p'],
 					false
 					)
 				elif(OS.get_name() == "OSX"):
+# warning-ignore:return_value_discarded
 					OS.execute(
 						'/user/bin/env',
 						[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+dd, '-p'],
 						false
 					)
 				elif(OS.get_name() == "Windows"):
+# warning-ignore:return_value_discarded
 					OS.execute(
 						'start',
 						[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+dd, '-p'],
@@ -61,18 +64,21 @@ func _process(_delta):
 				OS.window_position.y = 1
 				print("\n'"+sltd.file_name+"' OUTPUT:")
 				if(OS.get_name() == "X11"):
+# warning-ignore:return_value_discarded
 					OS.execute(
 					'/usr/bin/env',
 					[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
 					true, output
 					)
 				elif(OS.get_name() == "OSX"):
+# warning-ignore:return_value_discarded
 					OS.execute(
 					'/usr/bin/env',
 					[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
 					true, output
 					)
 				elif(OS.get_name() == "Windows"):
+# warning-ignore:return_value_discarded
 					OS.execute(
 						'start',
 						[OS.get_user_data_dir()+"/resources/"+sltd.file_name+"/"+f, '-p'],
@@ -80,6 +86,7 @@ func _process(_delta):
 						output
 					)
 				make_dir("user://resources/"+sltd.file_name+"_logs")
+# warning-ignore:integer_division
 				var path = "user://resources/"+sltd.file_name+"_logs/"+sltd.file_name+"_log%d"%(OS.get_system_time_secs()/10000)+".log"
 				if not(dir.file_exists(path)):
 					write_file(path, "", "")

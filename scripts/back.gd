@@ -9,6 +9,6 @@ extends Button
 
 
 # here's button to back to main gui from import menu
-func _process(delta):
+func _process(_delta):
 	if(self.pressed):
 		get_tree().get_root().get_node("EngineList/Panel/import").visible = false

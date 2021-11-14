@@ -21,6 +21,7 @@ func _process(_delta):
 		save_settings()
 	if(get_node("GUI/Panel/Back with saving").pressed):
 		save_settings()
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://scenes/EngineList.tscn")
 func load_settings():
 	var set1 = read_file("user://options/lang.settings", "json")

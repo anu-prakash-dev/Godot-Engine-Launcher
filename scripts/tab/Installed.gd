@@ -8,7 +8,7 @@ extends Button
 ###############################
 
 # here's button to switch main gui to download tab
-func _process(delta):
+func _process(_delta):
 	if(self.pressed):
 		get_node("GUI").visible = true
 		get_tree().get_root().get_node("EngineList/Panel/Tab/to_download/GUI").visible = false

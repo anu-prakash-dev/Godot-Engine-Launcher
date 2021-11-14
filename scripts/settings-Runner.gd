@@ -15,7 +15,7 @@ onready var time1 = OS.get_system_time_msecs()
 var a2 = true
 onready var time2 = OS.get_system_time_msecs()
 
-func _process(delta):
+func _process(_delta):
 	if($cgs.pressed and a1 == true):
 		set1 = not(set1)
 		time1 = OS.get_system_time_msecs()

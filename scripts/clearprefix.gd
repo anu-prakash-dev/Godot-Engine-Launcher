@@ -14,11 +14,13 @@ func _ready():
 	OS.window_size.x = 200
 	OS.window_size.y = 100
 
-func _process(delta):
+func _process(_delta):
 	if($Panel/no.pressed):
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://scenes/Loader.tscn")
 	if($Panel/yes.pressed):
 		clear()
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://scenes/Loader.tscn")
 func clear():
 	var dir = Directory.new()

@@ -11,7 +11,7 @@ extends Control
 var subject = ""
 var contents = ""
 
-func _process(delta):
+func _process(_delta):
 	if($GUI/back.pressed):
 		self.visible = false
 		$GUI/TextEdit.text = ""

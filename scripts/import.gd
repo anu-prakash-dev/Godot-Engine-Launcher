@@ -11,6 +11,7 @@ extends Panel
 func _process(_delta):
 	if($Import.pressed):
 		add_installed($name.text, $path.text)
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://scenes/EngineList.tscn")
 
 func add_installed(version, path):

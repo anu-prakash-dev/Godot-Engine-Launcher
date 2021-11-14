@@ -33,6 +33,7 @@ func _ready():
 	if(d.file_exists("user://options/version.settings")):
 		var dd = read_file("user://options/version.settings", "")
 		if not(dd == version):
+# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://scenes/clearprefix.tscn")
 	if not(d.file_exists("user://data/resources.list")):
 		write_file("user://data/resources.list", "var", data)
@@ -92,6 +93,7 @@ func _ready():
 		"paste":"Paste"
 		})
 
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/EngineList.tscn")
 
 func make_dir(path):
@@ -120,7 +122,6 @@ func read_file(path, type):
 
 func write_file(path, type, data):
 	var file = File.new()
-	var dir = Directory.new()
 	file.open(path, File.WRITE)
 	if(type == "json"):
 		file.store_line(to_json(data))
