@@ -180,10 +180,7 @@ margin_bottom = 561.0
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 37.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_top = 29.0
 
 [node name="v" type="VBoxContainer" parent="main/v/tabs/Available"]
 anchor_right = 1.0
@@ -367,7 +364,6 @@ alignment = 1
 [node name="log" type="CheckBox" parent="Settings/main/v/tabs/Launcher/v/log"]
 margin_right = 16.0
 margin_bottom = 19.0
-disabled = true
 text = "Run with logging session "
 
 [node name="HSeparator2" type="HSeparator" parent="Settings/main/v"]
@@ -502,10 +498,10 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -190.0
-margin_top = -43.5
-margin_right = -198.0
-margin_bottom = -84.5
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -35.0
 scrolling_enabled = false
 
 [node name="v" type="VBoxContainer" parent="background/Theme"]
@@ -603,24 +599,83 @@ text = "button pressed color:"
 margin_right = 40.0
 margin_bottom = 19.0
 
+[node name="logging" type="Popup" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -481.0
+margin_top = -276.0
+margin_right = 466.0
+margin_bottom = 270.0
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="logging"]
+self_modulate = Color( 1, 1, 1, 0.560784 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="main" type="MarginContainer" parent="logging"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="v" type="VBoxContainer" parent="logging/main"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 942.0
+margin_bottom = 541.0
+
+[node name="Label" type="Label" parent="logging/main/v"]
+margin_right = 937.0
+margin_bottom = 19.0
+text = "Log:"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="logging/main/v"]
+margin_top = 23.0
+margin_right = 937.0
+margin_bottom = 27.0
+
+[node name="log" type="RichTextLabel" parent="logging/main/v"]
+margin_top = 31.0
+margin_right = 937.0
+margin_bottom = 513.0
+size_flags_vertical = 3
+
+[node name="Copy" type="Button" parent="logging/main/v"]
+margin_top = 517.0
+margin_right = 937.0
+margin_bottom = 536.0
+text = "Copy"
+
 [connection signal="item_selected" from="main/v/tabs/Installed/v/h2/ItemList" to="." method="i_l_s"]
-[connection signal="nothing_selected" from="main/v/tabs/Installed/v/h2/ItemList" to="." method="i_l_n"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/run" to="." method="_on_run_pressed"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/location" to="." method="open_file_location"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/remove" to="." method="_on_remove_pressed"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/settings" to="." method="open_settings"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/exit" to="." method="close_launcher"]
 [connection signal="item_selected" from="main/v/tabs/Available/v/h/ItemList" to="." method="a_l_s"]
-[connection signal="nothing_selected" from="main/v/tabs/Available/v/h/ItemList" to="." method="a_l_n"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/download" to="." method="_on_download_pressed"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/reload" to="." method="reload_list"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/settings" to="." method="open_settings"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/exit" to="." method="close_launcher"]
 [connection signal="pressed" from="Settings/main/v/h/sc" to="." method="save_main"]
-[connection signal="pressed" from="Settings/main/v/h/swc" to="." method="close_settings_menu"]
 [connection signal="pressed" from="Settings/main/v/h/swc" to="." method="load_main"]
+[connection signal="pressed" from="Settings/main/v/h/swc" to="." method="close_settings_menu"]
 [connection signal="pressed" from="Info/main/s/ok" to="." method="close_message"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="request_completed" from="file" to="." method="file_success"]
 [connection signal="file_selected" from="background" to="." method="background_file_selected"]
 [connection signal="pressed" from="background/Theme/v/background/select" to="." method="select_background"]
+[connection signal="pressed" from="logging/main/v/Copy" to="." method="_on_Copy_pressed"]

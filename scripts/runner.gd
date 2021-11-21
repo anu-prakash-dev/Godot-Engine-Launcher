@@ -10,10 +10,28 @@ func _ready():
 	_info("load", 50)
 	_load_installed()
 	_load_available()
+	_load_metadata()
 	load_main()
 	_hide_info()
 	_check_last_update()
 	
+
+func _save_metadata():
+	var _data = []
+	var _tick = 0
+	while not(_tick == $main/v/tabs/Installed/v/h2/ItemList.get_item_count()):
+		_data += [$main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_tick)]
+		_tick += 1
+	
+	lib_main.mkfile("user://metadata", "var", _data)
+
+func _load_metadata():
+	if(lib_main.check("user://metadata")):
+		var _data = lib_main.rdfile("user://metadata", "var")
+		var _tick = 0
+		for _object in _data:
+			$main/v/tabs/Installed/v/h2/ItemList.set_item_metadata(_tick, _object)
+			_tick += 1
 
 func _check_os():
 	if(OS.get_name() == "X11"):
@@ -76,6 +94,7 @@ func _process(_delta):
 	if(_is_downloading2 and OS.get_system_time_msecs() - time > 10):
 		time = OS.get_system_time_msecs()
 		_get_file_download_level()
+	_chill_logging()
 
 func _get_file_download_level():
 	var procent = 45-45/(($file.get_downloaded_bytes()/1000000)+0.01)
@@ -108,6 +127,7 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, _body)
 func _exit_tree():
 	lib_main.mkfile("user://installed", "var", $main/v/tabs/Installed/v/h2/ItemList.items)
 	lib_main.mkfile("user://available", "var", $main/v/tabs/Available/v/h/ItemList.items)
+	_save_metadata()
 
 func _load_installed():
 	if(lib_main.check("user://installed")):
@@ -185,7 +205,7 @@ func file_success(_result, response_code, _headers, _body):
 		
 		$main/v/tabs/Installed/v/h2/ItemList.add_item($main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected), load("res://textures/godot.png"))
 		$main/v/tabs/Installed/v/h2/ItemList.set_item_metadata($main/v/tabs/Installed/v/h2/ItemList.get_item_count()-1, OS.get_user_data_dir()+"/binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected))
-		lib_main.rmfile("user://binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"/package.zip")
+		#lib_main.rmfile("user://binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"/package.zip")
 		
 		
 		if(OS.get_name() == "X11" or OS.get_name() == "OSX"):
@@ -195,12 +215,12 @@ func file_success(_result, response_code, _headers, _body):
 			dir.list_dir_begin()
 			var _f = dir.get_next()
 			while not(_f == ""):
-				if not(_f == "." or _f == ".."):
+				if not(_f == "." or _f == ".." or _f == "package.zip"):
 					_file = _f
 					break
 # warning-ignore:return_value_discarded
 			OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"/"+_file])
-		
+		#lib_main.rmfile("user://binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"/package.zip")
 		
 		_exit_tree()
 		_hide_info()
@@ -236,6 +256,7 @@ func i_l_n():
 func i_l_s(index):
 	_is_installed_selected = index
 
+var output = []
 
 func _on_run_pressed():
 	if not(_is_installed_selected == -1):
@@ -248,31 +269,76 @@ func _on_run_pressed():
 			if not(_f == ".." or _f == "."):
 				_filename = _f
 				break
-		
-		if(OS.get_name() == "X11"):
+			_f = dir.get_next()
+		if not($Settings/main/v/tabs/Launcher/v/log/log.pressed):
+			if(OS.get_name() == "X11"):
 # warning-ignore:return_value_discarded
-			OS.execute(
-			'/usr/bin/env',
-			[$main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename, '-p'],
-			false
-			)
-		elif(OS.get_name() == "OSX"):
-# warning-ignore:return_value_discarded
-			OS.execute(
-				'/user/bin/env',
+				OS.execute(
+				'/usr/bin/env',
 				[$main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename, '-p'],
 				false
-			)
-		elif(OS.get_name() == "Windows"):
+				)
+			elif(OS.get_name() == "OSX"):
 # warning-ignore:return_value_discarded
-			OS.execute(
-				'start',
+				OS.execute(
+					'/user/bin/env',
+					[$main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename, '-p'],
+					false
+				)
+			elif(OS.get_name() == "Windows"):
+# warning-ignore:return_value_discarded
+				OS.execute(
+					'start',
+					[$main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename, '-p'],
+					false
+				)
+			
+			close_launcher()
+		else:
+			output = []
+			_output_tick = 0
+			$logging/main/v/log.text=""
+			$logging.popup_centered()
+			$shell.visible=true
+			if(OS.get_name() == "X11"):
+# warning-ignore:return_value_discarded
+				OS.execute(
+				'/usr/bin/env',
 				[$main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename, '-p'],
-				false
-			)
-		
-		close_launcher()
+				false,
+				output
+				)
+			elif(OS.get_name() == "OSX"):
+# warning-ignore:return_value_discarded
+				OS.execute(
+					'/user/bin/env',
+					[$main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename, '-p'],
+					true,
+					output
+				)
+			elif(OS.get_name() == "Windows"):
+# warning-ignore:return_value_discarded
+				OS.execute(
+					'start',
+					[$main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename, '-p'],
+					true,
+					output
+				)
+			
+			
 
+var _output_tick = 0
+
+func _chill_logging():
+	if not(output.size() == _output_tick):
+		while not(output.size() == _output_tick):
+			$logging/main/v/log.text += output[_output_tick]+"\n"
+			_output_tick += 1
+
+func _input(event):
+	if(event.is_action_pressed("ui_escape") and $logging.visible):
+		$logging.hide()
+		$shell.visible=false
 
 func _on_remove_pressed():
 	if not(_is_installed_selected == -1):
@@ -280,6 +346,7 @@ func _on_remove_pressed():
 		$main/v/tabs/Installed/v/h2/ItemList.remove_item(_is_installed_selected)
 		_is_installed_selected = -1
 		_exit_tree()
+
 
 
 func open_file_location():
@@ -344,3 +411,7 @@ func background_file_selected(path):
 
 func select_background():
 	$background.popup_centered()
+
+
+func _on_Copy_pressed():
+	OS.clipboard = $logging/main/v/log.text
