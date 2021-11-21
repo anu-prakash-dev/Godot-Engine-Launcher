@@ -364,7 +364,7 @@ alignment = 1
 [node name="log" type="CheckBox" parent="Settings/main/v/tabs/Launcher/v/log"]
 margin_right = 16.0
 margin_bottom = 19.0
-text = "Run with logging session "
+text = "Run with logging session"
 
 [node name="HSeparator2" type="HSeparator" parent="Settings/main/v"]
 margin_top = 460.0
@@ -600,7 +600,6 @@ margin_right = 40.0
 margin_bottom = 19.0
 
 [node name="logging" type="Popup" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -670,6 +669,7 @@ text = "Copy"
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/reload" to="." method="reload_list"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/settings" to="." method="open_settings"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/exit" to="." method="close_launcher"]
+[connection signal="pressed" from="Settings/main/v/h/sc" to="." method="close_settings_menu"]
 [connection signal="pressed" from="Settings/main/v/h/sc" to="." method="save_main"]
 [connection signal="pressed" from="Settings/main/v/h/swc" to="." method="load_main"]
 [connection signal="pressed" from="Settings/main/v/h/swc" to="." method="close_settings_menu"]

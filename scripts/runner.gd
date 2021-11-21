@@ -94,7 +94,6 @@ func _process(_delta):
 	if(_is_downloading2 and OS.get_system_time_msecs() - time > 10):
 		time = OS.get_system_time_msecs()
 		_get_file_download_level()
-	_chill_logging()
 
 func _get_file_download_level():
 	var procent = 45-45/(($file.get_downloaded_bytes()/1000000)+0.01)
@@ -296,7 +295,6 @@ func _on_run_pressed():
 			close_launcher()
 		else:
 			output = []
-			_output_tick = 0
 			$logging/main/v/log.text=""
 			$logging.popup_centered()
 			$shell.visible=true
@@ -325,15 +323,7 @@ func _on_run_pressed():
 					output
 				)
 			
-			
-
-var _output_tick = 0
-
-func _chill_logging():
-	if not(output.size() == _output_tick):
-		while not(output.size() == _output_tick):
-			$logging/main/v/log.text += output[_output_tick]+"\n"
-			_output_tick += 1
+			print(output)
 
 func _input(event):
 	if(event.is_action_pressed("ui_escape") and $logging.visible):
@@ -389,6 +379,8 @@ func save_main():
 	var _save_data = {"chunk":_chunk, "run":_run}
 	
 	lib_main.mkfile("user://main", "var", _save_data)
+	
+	
 
 func load_main():
 	if(lib_main.check("user://main")):
