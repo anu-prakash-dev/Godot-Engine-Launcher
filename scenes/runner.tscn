@@ -1,0 +1,626 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/main.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/runner.gd" type="Script" id=2]
+[ext_resource path="res://textures/background.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[node name="runner" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="backgroundcolor" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0941176, 0.133333, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="backgroundtexture" type="TextureRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.235294 )
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btcolor" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0352941, 0.0352941, 0.0352941, 0.627451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="main" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="v" type="VBoxContainer" parent="main"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1019.0
+margin_bottom = 595.0
+size_flags_vertical = 3
+
+[node name="tabs" type="TabContainer" parent="main/v"]
+margin_right = 1014.0
+margin_bottom = 590.0
+size_flags_vertical = 3
+tab_align = 0
+
+[node name="Installed" type="Tabs" parent="main/v/tabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 29.0
+
+[node name="v" type="VBoxContainer" parent="main/v/tabs/Installed"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="main/v/tabs/Installed/v"]
+margin_right = 1014.0
+margin_bottom = 4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="h2" type="HBoxContainer" parent="main/v/tabs/Installed/v"]
+margin_top = 8.0
+margin_right = 1014.0
+margin_bottom = 553.0
+size_flags_vertical = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="ItemList" parent="main/v/tabs/Installed/v/h2"]
+margin_right = 894.0
+margin_bottom = 545.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+auto_height = true
+max_columns = 50
+icon_mode = 0
+fixed_icon_size = Vector2( 50, 50 )
+
+[node name="VSeparator" type="VSeparator" parent="main/v/tabs/Installed/v/h2"]
+margin_left = 898.0
+margin_right = 902.0
+margin_bottom = 545.0
+
+[node name="options" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2"]
+margin_left = 906.0
+margin_right = 1006.0
+margin_bottom = 545.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="run" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
+margin_right = 100.0
+margin_bottom = 19.0
+text = "run"
+
+[node name="location" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
+margin_top = 23.0
+margin_right = 100.0
+margin_bottom = 42.0
+text = "location"
+
+[node name="remove" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
+margin_top = 46.0
+margin_right = 100.0
+margin_bottom = 65.0
+text = "remove"
+
+[node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
+margin_top = 69.0
+margin_right = 100.0
+margin_bottom = 73.0
+
+[node name="down" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2/options"]
+margin_top = 77.0
+margin_right = 100.0
+margin_bottom = 483.0
+size_flags_vertical = 3
+
+[node name="HSeparator3" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
+margin_top = 487.0
+margin_right = 100.0
+margin_bottom = 491.0
+
+[node name="settings" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
+margin_top = 495.0
+margin_right = 100.0
+margin_bottom = 514.0
+text = "settings"
+
+[node name="exit" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
+margin_top = 518.0
+margin_right = 100.0
+margin_bottom = 537.0
+text = "exit"
+
+[node name="HSeparator4" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
+margin_top = 541.0
+margin_right = 100.0
+margin_bottom = 545.0
+
+[node name="VSeparator2" type="VSeparator" parent="main/v/tabs/Installed/v/h2"]
+margin_left = 1010.0
+margin_right = 1014.0
+margin_bottom = 545.0
+
+[node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Installed/v"]
+margin_top = 557.0
+margin_right = 1014.0
+margin_bottom = 561.0
+
+[node name="Available" type="Tabs" parent="main/v/tabs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 37.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="v" type="VBoxContainer" parent="main/v/tabs/Available"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="main/v/tabs/Available/v"]
+margin_right = 1006.0
+margin_bottom = 4.0
+
+[node name="h" type="HBoxContainer" parent="main/v/tabs/Available/v"]
+margin_top = 8.0
+margin_right = 1006.0
+margin_bottom = 541.0
+size_flags_vertical = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="ItemList" parent="main/v/tabs/Available/v/h"]
+margin_right = 886.0
+margin_bottom = 533.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_columns = 50
+icon_mode = 0
+fixed_icon_size = Vector2( 50, 50 )
+
+[node name="VSeparator" type="VSeparator" parent="main/v/tabs/Available/v/h"]
+margin_left = 890.0
+margin_right = 894.0
+margin_bottom = 533.0
+
+[node name="options" type="VBoxContainer" parent="main/v/tabs/Available/v/h"]
+margin_left = 898.0
+margin_right = 998.0
+margin_bottom = 533.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="download" type="Button" parent="main/v/tabs/Available/v/h/options"]
+margin_right = 100.0
+margin_bottom = 25.0
+text = "download"
+
+[node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Available/v/h/options"]
+margin_top = 29.0
+margin_right = 100.0
+margin_bottom = 33.0
+
+[node name="down" type="VBoxContainer" parent="main/v/tabs/Available/v/h/options"]
+margin_top = 37.0
+margin_right = 100.0
+margin_bottom = 430.0
+size_flags_vertical = 3
+
+[node name="reload" type="Button" parent="main/v/tabs/Available/v/h/options"]
+margin_top = 434.0
+margin_right = 100.0
+margin_bottom = 459.0
+text = "reload"
+
+[node name="HSeparator3" type="HSeparator" parent="main/v/tabs/Available/v/h/options"]
+margin_top = 463.0
+margin_right = 100.0
+margin_bottom = 467.0
+
+[node name="settings" type="Button" parent="main/v/tabs/Available/v/h/options"]
+margin_top = 471.0
+margin_right = 100.0
+margin_bottom = 496.0
+text = "settings"
+
+[node name="exit" type="Button" parent="main/v/tabs/Available/v/h/options"]
+margin_top = 500.0
+margin_right = 100.0
+margin_bottom = 525.0
+text = "exit"
+
+[node name="HSeparator4" type="HSeparator" parent="main/v/tabs/Available/v/h/options"]
+margin_top = 529.0
+margin_right = 100.0
+margin_bottom = 533.0
+
+[node name="VSeparator2" type="VSeparator" parent="main/v/tabs/Available/v/h"]
+margin_left = 1002.0
+margin_right = 1006.0
+margin_bottom = 533.0
+
+[node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Available/v"]
+margin_top = 545.0
+margin_right = 1006.0
+margin_bottom = 549.0
+
+[node name="shell" type="Panel" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.658824 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="PopupDialog" parent="."]
+self_modulate = Color( 1, 1, 1, 0.505882 )
+anchor_left = 0.0371094
+anchor_top = 0.0725
+anchor_right = 0.962891
+anchor_bottom = 0.9275
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="main" type="MarginContainer" parent="Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="v" type="VBoxContainer" parent="Settings/main"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 938.0
+margin_bottom = 503.0
+
+[node name="tabs" type="TabContainer" parent="Settings/main/v"]
+margin_top = 8.0
+margin_right = 928.0
+margin_bottom = 456.0
+size_flags_vertical = 3
+tab_align = 0
+use_hidden_tabs_for_min_size = true
+
+[node name="Launcher" type="Tabs" parent="Settings/main/v/tabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 29.0
+
+[node name="v" type="VBoxContainer" parent="Settings/main/v/tabs/Launcher"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chunk" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
+margin_top = 8.0
+margin_right = 920.0
+margin_bottom = 8.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Settings/main/v/tabs/Launcher/v/chunk"]
+margin_right = 40.0
+margin_bottom = 19.0
+text = "download chunk size:"
+
+[node name="chunk" type="SpinBox" parent="Settings/main/v/tabs/Launcher/v/chunk"]
+margin_right = 74.0
+margin_bottom = 29.0
+min_value = 4096.0
+max_value = 65000.0
+value = 4096.0
+rounded = true
+
+[node name="log" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
+margin_top = 8.0
+margin_right = 920.0
+margin_bottom = 8.0
+alignment = 1
+
+[node name="log" type="CheckBox" parent="Settings/main/v/tabs/Launcher/v/log"]
+margin_right = 16.0
+margin_bottom = 19.0
+disabled = true
+text = "Run with logging session "
+
+[node name="HSeparator2" type="HSeparator" parent="Settings/main/v"]
+margin_top = 460.0
+margin_right = 928.0
+margin_bottom = 464.0
+
+[node name="h" type="HBoxContainer" parent="Settings/main/v"]
+margin_top = 468.0
+margin_right = 928.0
+margin_bottom = 493.0
+
+[node name="sc" type="Button" parent="Settings/main/v/h"]
+margin_right = 104.0
+margin_bottom = 25.0
+text = "Save & close"
+
+[node name="swc" type="Button" parent="Settings/main/v/h"]
+margin_left = 108.0
+margin_right = 276.0
+margin_bottom = 25.0
+text = "Close without saving"
+
+[node name="Popup" type="PopupDialog" parent="."]
+anchor_left = 0.335938
+anchor_top = 0.365
+anchor_right = 0.664062
+anchor_bottom = 0.635
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="main" type="MarginContainer" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="s" type="VBoxContainer" parent="Popup/main"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 330.0
+margin_bottom = 157.0
+
+[node name="text" type="Label" parent="Popup/main/s"]
+margin_right = 326.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 0, 50 )
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 7
+align = 1
+valign = 1
+clip_text = true
+
+[node name="load" type="ProgressBar" parent="Popup/main/s"]
+margin_top = 133.0
+margin_right = 326.0
+margin_bottom = 152.0
+step = 1.0
+value = 50.0
+rounded = true
+
+[node name="Info" type="PopupDialog" parent="."]
+anchor_left = 0.335938
+anchor_top = 0.365
+anchor_right = 0.664062
+anchor_bottom = 0.635
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="main" type="MarginContainer" parent="Info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="s" type="VBoxContainer" parent="Info/main"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 330.0
+margin_bottom = 157.0
+
+[node name="text" type="Label" parent="Info/main/s"]
+margin_right = 326.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 0, 50 )
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 7
+align = 1
+valign = 1
+
+[node name="ok" type="Button" parent="Info/main/s"]
+margin_right = 12.0
+margin_bottom = 25.0
+text = "Ok"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+download_chunk_size = 4096
+use_threads = true
+timeout = 30
+
+[node name="file" type="HTTPRequest" parent="."]
+
+[node name="background" type="FileDialog" parent="."]
+anchor_left = 0.236328
+anchor_top = 0.236667
+anchor_right = 0.763672
+anchor_bottom = 0.763333
+popup_exclusive = true
+window_title = "Otwórz plik"
+resizable = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png ; PNG File", "*.jpg ; JPG File", "*.jpeg ; JPEG File" )
+show_hidden_files = true
+current_dir = "/home/gameplayer/Dokumenty/godot-workspace/programs/ng/Godot-Engine-Launcher"
+current_path = "/home/gameplayer/Dokumenty/godot-workspace/programs/ng/Godot-Engine-Launcher/"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Theme" type="Tabs" parent="background"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -190.0
+margin_top = -43.5
+margin_right = -198.0
+margin_bottom = -84.5
+scrolling_enabled = false
+
+[node name="v" type="VBoxContainer" parent="background/Theme"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="background" type="HBoxContainer" parent="background/Theme/v"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="background/Theme/v/background"]
+margin_right = 40.0
+margin_bottom = 19.0
+text = "background texture:"
+
+[node name="path" type="LineEdit" parent="background/Theme/v/background"]
+margin_right = 58.0
+margin_bottom = 29.0
+
+[node name="select" type="Button" parent="background/Theme/v/background"]
+margin_right = 40.0
+margin_bottom = 19.0
+text = "select"
+
+[node name="lines" type="HBoxContainer" parent="background/Theme/v"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="background/Theme/v/lines"]
+margin_right = 40.0
+margin_bottom = 19.0
+text = "lines color:"
+
+[node name="color" type="ColorPickerButton" parent="background/Theme/v/lines"]
+margin_right = 40.0
+margin_bottom = 19.0
+
+[node name="backgroundc" type="HBoxContainer" parent="background/Theme/v"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="background/Theme/v/backgroundc"]
+margin_right = 40.0
+margin_bottom = 19.0
+text = "background shade color:"
+
+[node name="color" type="ColorPickerButton" parent="background/Theme/v/backgroundc"]
+margin_right = 40.0
+margin_bottom = 19.0
+
+[node name="button" type="HBoxContainer" parent="background/Theme/v"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="background/Theme/v/button"]
+margin_right = 40.0
+margin_bottom = 19.0
+text = "button color:"
+
+[node name="color" type="ColorPickerButton" parent="background/Theme/v/button"]
+margin_right = 40.0
+margin_bottom = 19.0
+
+[node name="buttonf" type="HBoxContainer" parent="background/Theme/v"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="background/Theme/v/buttonf"]
+margin_right = 40.0
+margin_bottom = 19.0
+text = "button focus color:"
+
+[node name="color" type="ColorPickerButton" parent="background/Theme/v/buttonf"]
+margin_right = 40.0
+margin_bottom = 19.0
+
+[node name="buttonp" type="HBoxContainer" parent="background/Theme/v"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="background/Theme/v/buttonp"]
+margin_right = 40.0
+margin_bottom = 19.0
+text = "button pressed color:"
+
+[node name="color" type="ColorPickerButton" parent="background/Theme/v/buttonp"]
+margin_right = 40.0
+margin_bottom = 19.0
+
+[connection signal="item_selected" from="main/v/tabs/Installed/v/h2/ItemList" to="." method="i_l_s"]
+[connection signal="nothing_selected" from="main/v/tabs/Installed/v/h2/ItemList" to="." method="i_l_n"]
+[connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/run" to="." method="_on_run_pressed"]
+[connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/location" to="." method="open_file_location"]
+[connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/remove" to="." method="_on_remove_pressed"]
+[connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/settings" to="." method="open_settings"]
+[connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/exit" to="." method="close_launcher"]
+[connection signal="item_selected" from="main/v/tabs/Available/v/h/ItemList" to="." method="a_l_s"]
+[connection signal="nothing_selected" from="main/v/tabs/Available/v/h/ItemList" to="." method="a_l_n"]
+[connection signal="pressed" from="main/v/tabs/Available/v/h/options/download" to="." method="_on_download_pressed"]
+[connection signal="pressed" from="main/v/tabs/Available/v/h/options/reload" to="." method="reload_list"]
+[connection signal="pressed" from="main/v/tabs/Available/v/h/options/settings" to="." method="open_settings"]
+[connection signal="pressed" from="main/v/tabs/Available/v/h/options/exit" to="." method="close_launcher"]
+[connection signal="pressed" from="Settings/main/v/h/sc" to="." method="save_main"]
+[connection signal="pressed" from="Settings/main/v/h/swc" to="." method="close_settings_menu"]
+[connection signal="pressed" from="Settings/main/v/h/swc" to="." method="load_main"]
+[connection signal="pressed" from="Info/main/s/ok" to="." method="close_message"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="request_completed" from="file" to="." method="file_success"]
+[connection signal="file_selected" from="background" to="." method="background_file_selected"]
+[connection signal="pressed" from="background/Theme/v/background/select" to="." method="select_background"]

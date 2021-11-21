@@ -10,29 +10,34 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
 
-config/name="Godot_Engine_Launcher"
+config/name="Godot Engine Launcher"
 config/description="App to manage Godot versions, maded in Godot."
-run/main_scene="res://scenes/Loader.tscn"
-config/custom_user_dir_name="/home/gameplayer"
-boot_splash/image="res://textures/updater-texture.png"
+run/main_scene="res://scenes/runner.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name=".godot_l"
+run/low_processor_mode=true
+boot_splash/image="res://textures/boot.png"
+boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
-config/icon="res://godot.png"
+config/icon="res://textures/godot.png"
 
-[display]
+[autoload]
 
-window/size/width=225
-window/size/height=225
-window/size/resizable=false
+lib_main="*res://libs/main.gd"
+
+[locale]
+
+translations=PoolStringArray( "res://lang/lang.en.translation", "res://lang/lang.pl.translation" )
+locale_filter=[ 0, [ "en", "pl" ] ]
 
 [rendering]
 
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0, 0.235294, 0.415686, 1 )
+environment/default_clear_color=Color( 0.0666667, 0.0705882, 0.0705882, 1 )
 environment/default_environment="res://default_env.tres"

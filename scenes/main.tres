@@ -1,0 +1,82 @@
+[gd_resource type="Theme" load_steps=15 format=2]
+
+[ext_resource path="res://textures/fonts/main_font.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.105882, 0.141176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0.32549, 0.454902, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.2, 0.231373, 0.309804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0.384314, 0.54902, 1 )
+
+[sub_resource type="StyleBoxLine" id=12]
+color = Color( 0, 0.282353, 0.407843, 1 )
+grow_begin = 6.0
+grow_end = 6.0
+thickness = 3
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 0.145098 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.0588235, 0.12549, 0.196078, 0.368627 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 0.282353, 0.356863, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0, 0.168627, 0.227451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0.117647, 0.215686, 0.388235 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0.101961, 0.176471, 0.4 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_color = Color( 0, 0.188235, 0.25098, 0.376471 )
+border_blend = true
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0.235294, 0.376471, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_color = Color( 0, 0.117647, 0.14902, 1 )
+border_blend = true
+expand_margin_right = 3.0
+
+[sub_resource type="StyleBoxLine" id=13]
+color = Color( 0, 0.282353, 0.407843, 1 )
+grow_begin = 6.0
+grow_end = 6.0
+thickness = 3
+vertical = true
+
+[resource]
+default_font = ExtResource( 1 )
+Button/styles/disabled = SubResource( 1 )
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 4 )
+HSeparator/styles/separator = SubResource( 12 )
+ItemList/colors/font_color = Color( 0.305882, 0.423529, 0.462745, 1 )
+ItemList/colors/font_color_selected = Color( 0, 0.345098, 0.482353, 1 )
+ItemList/styles/bg = SubResource( 8 )
+ItemList/styles/bg_focus = SubResource( 9 )
+ItemList/styles/selected = SubResource( 10 )
+ItemList/styles/selected_focus = SubResource( 11 )
+TabContainer/colors/font_color_bg = Color( 0, 0.533333, 0.67451, 0.560784 )
+TabContainer/colors/font_color_fg = Color( 0, 0.486275, 0.913725, 1 )
+TabContainer/styles/panel = SubResource( 5 )
+TabContainer/styles/tab_bg = SubResource( 6 )
+TabContainer/styles/tab_fg = SubResource( 7 )
+VSeparator/styles/separator = SubResource( 13 )
