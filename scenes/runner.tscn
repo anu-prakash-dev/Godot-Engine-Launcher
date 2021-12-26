@@ -317,9 +317,8 @@ margin_right = 938.0
 margin_bottom = 503.0
 
 [node name="tabs" type="TabContainer" parent="Settings/main/v"]
-margin_top = 8.0
 margin_right = 928.0
-margin_bottom = 456.0
+margin_bottom = 462.0
 size_flags_vertical = 3
 tab_align = 0
 use_hidden_tabs_for_min_size = true
@@ -332,23 +331,26 @@ margin_top = 29.0
 [node name="v" type="VBoxContainer" parent="Settings/main/v/tabs/Launcher"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="chunk" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
-margin_top = 8.0
-margin_right = 920.0
-margin_bottom = 8.0
+margin_right = 928.0
+margin_bottom = 29.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Settings/main/v/tabs/Launcher/v/chunk"]
-margin_right = 40.0
-margin_bottom = 19.0
+margin_left = 346.0
+margin_top = 5.0
+margin_right = 503.0
+margin_bottom = 24.0
 text = "download chunk size:"
 
 [node name="chunk" type="SpinBox" parent="Settings/main/v/tabs/Launcher/v/chunk"]
-margin_right = 74.0
+margin_left = 507.0
+margin_right = 581.0
 margin_bottom = 29.0
 min_value = 4096.0
 max_value = 65000.0
@@ -356,35 +358,74 @@ value = 4096.0
 rounded = true
 
 [node name="log" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
-margin_top = 8.0
-margin_right = 920.0
-margin_bottom = 8.0
+visible = false
+margin_top = 39.0
+margin_right = 928.0
+margin_bottom = 58.0
 alignment = 1
 
 [node name="log" type="CheckBox" parent="Settings/main/v/tabs/Launcher/v/log"]
-margin_right = 16.0
+margin_left = 361.0
+margin_right = 566.0
 margin_bottom = 19.0
-text = "Run with logging session"
+text = "rl"
+
+[node name="close" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
+margin_top = 68.0
+margin_right = 928.0
+margin_bottom = 87.0
+alignment = 1
+
+[node name="close" type="CheckBox" parent="Settings/main/v/tabs/Launcher/v/close"]
+margin_left = 446.0
+margin_right = 482.0
+margin_bottom = 19.0
+text = "cs"
+
+[node name="background" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
+visible = false
+margin_top = 97.0
+margin_right = 928.0
+margin_bottom = 116.0
+alignment = 1
+
+[node name="setb" type="Button" parent="Settings/main/v/tabs/Launcher/v/background"]
+margin_left = 337.0
+margin_right = 451.0
+margin_bottom = 19.0
+text = "set background"
+
+[node name="VSeparator" type="VSeparator" parent="Settings/main/v/tabs/Launcher/v/background"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 455.0
+margin_right = 459.0
+margin_bottom = 19.0
+
+[node name="clearb" type="Button" parent="Settings/main/v/tabs/Launcher/v/background"]
+margin_left = 463.0
+margin_right = 591.0
+margin_bottom = 19.0
+text = "clear background"
 
 [node name="HSeparator2" type="HSeparator" parent="Settings/main/v"]
-margin_top = 460.0
+margin_top = 466.0
 margin_right = 928.0
-margin_bottom = 464.0
+margin_bottom = 470.0
 
 [node name="h" type="HBoxContainer" parent="Settings/main/v"]
-margin_top = 468.0
+margin_top = 474.0
 margin_right = 928.0
 margin_bottom = 493.0
 
 [node name="sc" type="Button" parent="Settings/main/v/h"]
-margin_right = 104.0
-margin_bottom = 25.0
+margin_right = 92.0
+margin_bottom = 19.0
 text = "Save & close"
 
 [node name="swc" type="Button" parent="Settings/main/v/h"]
-margin_left = 108.0
-margin_right = 276.0
-margin_bottom = 25.0
+margin_left = 96.0
+margin_right = 252.0
+margin_bottom = 19.0
 text = "Close without saving"
 
 [node name="Popup" type="PopupDialog" parent="."]
@@ -455,7 +496,7 @@ margin_right = 330.0
 margin_bottom = 157.0
 
 [node name="text" type="Label" parent="Info/main/s"]
-margin_right = 326.0
+margin_right = 325.0
 margin_bottom = 129.0
 rect_min_size = Vector2( 0, 50 )
 rect_clip_content = true
@@ -465,8 +506,9 @@ align = 1
 valign = 1
 
 [node name="ok" type="Button" parent="Info/main/s"]
-margin_right = 12.0
-margin_bottom = 25.0
+margin_top = 133.0
+margin_right = 325.0
+margin_bottom = 152.0
 text = "Ok"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
@@ -493,111 +535,6 @@ current_path = "/home/gameplayer/Dokumenty/godot-workspace/programs/ng/Godot-Eng
 __meta__ = {
 "_edit_use_anchors_": true
 }
-
-[node name="Theme" type="Tabs" parent="background"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -35.0
-scrolling_enabled = false
-
-[node name="v" type="VBoxContainer" parent="background/Theme"]
-margin_right = 40.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="background" type="HBoxContainer" parent="background/Theme/v"]
-margin_right = 40.0
-margin_bottom = 40.0
-alignment = 1
-
-[node name="Label" type="Label" parent="background/Theme/v/background"]
-margin_right = 40.0
-margin_bottom = 19.0
-text = "background texture:"
-
-[node name="path" type="LineEdit" parent="background/Theme/v/background"]
-margin_right = 58.0
-margin_bottom = 29.0
-
-[node name="select" type="Button" parent="background/Theme/v/background"]
-margin_right = 40.0
-margin_bottom = 19.0
-text = "select"
-
-[node name="lines" type="HBoxContainer" parent="background/Theme/v"]
-margin_right = 40.0
-margin_bottom = 40.0
-alignment = 1
-
-[node name="Label" type="Label" parent="background/Theme/v/lines"]
-margin_right = 40.0
-margin_bottom = 19.0
-text = "lines color:"
-
-[node name="color" type="ColorPickerButton" parent="background/Theme/v/lines"]
-margin_right = 40.0
-margin_bottom = 19.0
-
-[node name="backgroundc" type="HBoxContainer" parent="background/Theme/v"]
-margin_right = 40.0
-margin_bottom = 40.0
-alignment = 1
-
-[node name="Label" type="Label" parent="background/Theme/v/backgroundc"]
-margin_right = 40.0
-margin_bottom = 19.0
-text = "background shade color:"
-
-[node name="color" type="ColorPickerButton" parent="background/Theme/v/backgroundc"]
-margin_right = 40.0
-margin_bottom = 19.0
-
-[node name="button" type="HBoxContainer" parent="background/Theme/v"]
-margin_right = 40.0
-margin_bottom = 40.0
-alignment = 1
-
-[node name="Label" type="Label" parent="background/Theme/v/button"]
-margin_right = 40.0
-margin_bottom = 19.0
-text = "button color:"
-
-[node name="color" type="ColorPickerButton" parent="background/Theme/v/button"]
-margin_right = 40.0
-margin_bottom = 19.0
-
-[node name="buttonf" type="HBoxContainer" parent="background/Theme/v"]
-margin_right = 40.0
-margin_bottom = 40.0
-alignment = 1
-
-[node name="Label" type="Label" parent="background/Theme/v/buttonf"]
-margin_right = 40.0
-margin_bottom = 19.0
-text = "button focus color:"
-
-[node name="color" type="ColorPickerButton" parent="background/Theme/v/buttonf"]
-margin_right = 40.0
-margin_bottom = 19.0
-
-[node name="buttonp" type="HBoxContainer" parent="background/Theme/v"]
-margin_right = 40.0
-margin_bottom = 40.0
-alignment = 1
-
-[node name="Label" type="Label" parent="background/Theme/v/buttonp"]
-margin_right = 40.0
-margin_bottom = 19.0
-text = "button pressed color:"
-
-[node name="color" type="ColorPickerButton" parent="background/Theme/v/buttonp"]
-margin_right = 40.0
-margin_bottom = 19.0
 
 [node name="logging" type="Popup" parent="."]
 anchor_left = 0.5
@@ -635,11 +572,26 @@ margin_top = 5.0
 margin_right = 942.0
 margin_bottom = 541.0
 
-[node name="Label" type="Label" parent="logging/main/v"]
+[node name="h" type="HBoxContainer" parent="logging/main/v"]
 margin_right = 937.0
 margin_bottom = 19.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="logging/main/v/h"]
+margin_right = 885.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
 text = "Log:"
 align = 1
+
+[node name="closel" type="Button" parent="logging/main/v/h"]
+modulate = Color( 1, 0.192157, 0.192157, 1 )
+margin_left = 889.0
+margin_right = 937.0
+margin_bottom = 19.0
+text = " Close "
 
 [node name="HSeparator" type="HSeparator" parent="logging/main/v"]
 margin_top = 23.0
@@ -669,6 +621,8 @@ text = "Copy"
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/reload" to="." method="reload_list"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/settings" to="." method="open_settings"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/exit" to="." method="close_launcher"]
+[connection signal="pressed" from="Settings/main/v/tabs/Launcher/v/background/setb" to="." method="_on_setb_pressed"]
+[connection signal="pressed" from="Settings/main/v/tabs/Launcher/v/background/clearb" to="." method="_on_clearb_pressed"]
 [connection signal="pressed" from="Settings/main/v/h/sc" to="." method="close_settings_menu"]
 [connection signal="pressed" from="Settings/main/v/h/sc" to="." method="save_main"]
 [connection signal="pressed" from="Settings/main/v/h/swc" to="." method="load_main"]
@@ -677,5 +631,5 @@ text = "Copy"
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="request_completed" from="file" to="." method="file_success"]
 [connection signal="file_selected" from="background" to="." method="background_file_selected"]
-[connection signal="pressed" from="background/Theme/v/background/select" to="." method="select_background"]
+[connection signal="pressed" from="logging/main/v/h/closel" to="." method="_on_closel_pressed"]
 [connection signal="pressed" from="logging/main/v/Copy" to="." method="_on_Copy_pressed"]

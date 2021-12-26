@@ -2,19 +2,35 @@ extends Control
 
 var _base_url = "https://downloads.tuxfamily.org/godotengine/"
 var _current_os = "x11.64"
-
+var background = "default"
+var background_cache = "default"
+var _VERSION = "2.2.1"
 
 var _is_connection_works = false
 
 func _ready():
 	_info("load", 50)
+	_check_version()
 	_load_installed()
 	_load_available()
 	_load_metadata()
 	load_main()
 	_hide_info()
 	_check_last_update()
-	
+	if not(background == "default"):
+		$backgroundtexture.texture = load(background)
+
+func _check_version():
+	if(lib_main.check("user://version")):
+		var _data = lib_main.rdfile("user://version", "var")
+		if not(_data == _VERSION):
+			lib_main.rmfile("user://version")
+			lib_main.rmfile("user://main")
+			lib_main.mkfile("user://version", "var", _VERSION)
+	else:
+		lib_main.rmfile("user://version")
+		lib_main.rmfile("user://main")
+		lib_main.mkfile("user://version", "var", _VERSION)
 
 func _save_metadata():
 	var _data = []
@@ -59,10 +75,7 @@ func _message(_test = "Unknown exit code: ?"):
 	$shell.visible = false
 	print(_test)
 
-func close_settings_menu():
-	$Settings.hide()
-	if($shell.visible and not($Popup.visible)):
-		$shell.visible = false
+
 
 func open_settings():
 	$shell.visible=true
@@ -96,7 +109,7 @@ func _process(_delta):
 		_get_file_download_level()
 
 func _get_file_download_level():
-	var procent = 45-45/(($file.get_downloaded_bytes()/1000000)+0.01)
+	var procent = (($file.get_downloaded_bytes()/1000000)+0.01)/(($file.get_body_size()/1000000)+0.01)*100
 	_info("du", procent)
 
 func _on_HTTPRequest_request_completed(_result, _response_code, _headers, _body):
@@ -149,16 +162,20 @@ func _load_available():
 func _check_last_update():
 	if not(lib_main.check("user://last_reload")):
 		lib_main.mkfile("user://last_reload", "var", -1)
-		_message("The resources list is out-to-date, please update it to see the newest versions of godot engine - use 'Reload' button.")
+		_message("ff")
 	else:
 		var _data = lib_main.rdfile("user://last_reload", "var")
 		if(OS.get_system_time_secs()-1209600 > _data):
-			_message("The resources list is out-to-date, please update it to see the newest versions of godot engine - use 'Reload' button.")
+			_message("ff")
 
 
 func close_message():
 	$Info.hide()
 	$shell.visible=false
+	$Popup.hide()
+	$logging.hide()
+	$background.hide()
+	$Settings.hide()
 
 
 func reload_list():
@@ -204,27 +221,11 @@ func file_success(_result, response_code, _headers, _body):
 		
 		$main/v/tabs/Installed/v/h2/ItemList.add_item($main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected), load("res://textures/godot.png"))
 		$main/v/tabs/Installed/v/h2/ItemList.set_item_metadata($main/v/tabs/Installed/v/h2/ItemList.get_item_count()-1, OS.get_user_data_dir()+"/binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected))
-		#lib_main.rmfile("user://binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"/package.zip")
-		
-		
-		if(OS.get_name() == "X11" or OS.get_name() == "OSX"):
-			var _file = ""
-			var dir = Directory.new()
-			dir.open("user://binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected))
-			dir.list_dir_begin()
-			var _f = dir.get_next()
-			while not(_f == ""):
-				if not(_f == "." or _f == ".." or _f == "package.zip"):
-					_file = _f
-					break
-# warning-ignore:return_value_discarded
-			OS.execute("chmod", ["+rwx", OS.get_user_data_dir()+"/binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"/"+_file])
-		#lib_main.rmfile("user://binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"/package.zip")
 		
 		_exit_tree()
 		_hide_info()
 	else:
-		_message("Failed to connect to the network, error "+str(response_code)+".")
+		_message("Connection refused, error "+str(response_code)+".\nPlease check if server contains package\nor if you have stable internet\nconnection.")
 		print(_base_url+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"/Godot_v"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"-stable_"+_current_os+".zip")
 		_is_connection_works = false
 
@@ -269,6 +270,8 @@ func _on_run_pressed():
 				_filename = _f
 				break
 			_f = dir.get_next()
+		if(lib_main.check($main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/package.zip")):
+			lib_main.rmfile($main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/package.zip")
 		if not($Settings/main/v/tabs/Launcher/v/log/log.pressed):
 			if(OS.get_name() == "X11"):
 # warning-ignore:return_value_discarded
@@ -291,8 +294,8 @@ func _on_run_pressed():
 					[$main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename, '-p'],
 					false
 				)
-			
-			close_launcher()
+			if($"Settings/main/v/tabs/Launcher/v/close/close".pressed):
+				close_launcher()
 		else:
 			output = []
 			$logging/main/v/log.text=""
@@ -352,7 +355,6 @@ func save_settings():
 	var _background_path = $"Settings/main/v/tabs/Theme/v/background/path".text
 	var _background_shade = $"Settings/main/v/tabs/Theme/v/backgroundc/color".color
 	var _lines = $Settings/main/v/tabs/Theme/v/lines/color.color
-	
 	var _save_data = {"lines":_lines, "background_path":_background_path, "background_shade":_background_shade, "b":_b, "bp":_bp, "bf":_bf}
 	
 	lib_main.mkfile("user://theme", "var", _save_data)
@@ -369,14 +371,15 @@ func load_settings():
 		$Settings/main/v/tabs/Theme/v/lines/color.color = _data.lines
 		$Settings/main/v/tabs/Theme/v/background/path.text = _data.background_path
 		$Settings/main/v/tabs/Theme/v/backgroundc/color.color = _data.background_shade
-		
-		
+
 
 func save_main():
 	var _run = $Settings/main/v/tabs/Launcher/v/log/log.pressed
 	var _chunk = $Settings/main/v/tabs/Launcher/v/chunk/chunk.value
-	
-	var _save_data = {"chunk":_chunk, "run":_run}
+	var _cs = $"Settings/main/v/tabs/Launcher/v/close/close".pressed
+	var _bg = background
+	background_cache = background
+	var _save_data = {"chunk":_chunk, "run":_run, "bg":_bg, "cs":_cs}
 	
 	lib_main.mkfile("user://main", "var", _save_data)
 	
@@ -385,7 +388,9 @@ func save_main():
 func load_main():
 	if(lib_main.check("user://main")):
 		var _data = lib_main.rdfile("user://main", "var")
-		
+		$"Settings/main/v/tabs/Launcher/v/close/close".pressed = _data.cs
+		background = _data.bg
+		background_cache = _data.bg
 		$Settings/main/v/tabs/Launcher/v/chunk/chunk.value = _data.chunk
 		$Settings/main/v/tabs/Launcher/v/log/log.pressed = _data.run
 
@@ -398,12 +403,31 @@ func _set_theme_item(_name, _object, _value):
 
 
 func background_file_selected(path):
-	$Settings/main/v/tabs/Theme/v/background/path.text = path
-
-
-func select_background():
-	$background.popup_centered()
-
+	background = path
+	$backgroundtexture.texture = load(path)
 
 func _on_Copy_pressed():
 	OS.clipboard = $logging/main/v/log.text
+
+
+func _on_closel_pressed():
+	$logging.hide()
+	$shell.visible=false
+
+
+func _on_setb_pressed():
+	$background.popup_centered()
+
+
+func _on_clearb_pressed():
+	background = "default"
+	$backgroundtexture.texture = load("res://textures/background.png")
+
+func close_settings_menu():
+	if(background_cache == "default"):
+		$backgroundtexture.texture = load("res://textures/background.png")
+	else:
+		$backgroundtexture.texture = load(background_cache)
+	$Settings.hide()
+	if($shell.visible and not($Popup.visible)):
+		$shell.visible = false
