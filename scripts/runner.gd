@@ -1,9 +1,15 @@
 extends Control
 
+#######################################
+#  Copyright © 2020 - 2022 GamePlayer #
+#            on MIT License.          #
+#    If you respect me, put a small   #
+# information about me, when you will #
+#       use some stuff from here.     #
+#######################################
+
 var _base_url = "https://downloads.tuxfamily.org/godotengine/"
 var _current_os = "x11.64"
-var background = "default"
-var background_cache = "default"
 var _VERSION = "2.2.1"
 
 var _is_connection_works = false
@@ -15,10 +21,9 @@ func _ready():
 	_load_available()
 	_load_metadata()
 	load_main()
+	load_background()
 	_hide_info()
 	_check_last_update()
-	if not(background == "default"):
-		$backgroundtexture.texture = load(background)
 
 func _check_version():
 	if(lib_main.check("user://version")):
@@ -93,7 +98,7 @@ func _download(link = "", chunk_size = 4096):
 	_is_downloading = true
 
 func _get_HTTPRequest_download_level():
-	var procent = $HTTPRequest.get_downloaded_bytes()/1000000
+	var procent = (($HTTPRequest.get_downloaded_bytes()/1000000)+0.01)/(($HTTPRequest.get_body_size()/1000000)+0.01)*100
 	_info("du", round(procent))
 
 onready var time = OS.get_system_time_msecs()
@@ -174,7 +179,6 @@ func close_message():
 	$shell.visible=false
 	$Popup.hide()
 	$logging.hide()
-	$background.hide()
 	$Settings.hide()
 
 
@@ -328,106 +332,119 @@ func _on_run_pressed():
 			
 			print(output)
 
-func _input(event):
-	if(event.is_action_pressed("ui_escape") and $logging.visible):
-		$logging.hide()
-		$shell.visible=false
-
 func _on_remove_pressed():
 	if not(_is_installed_selected == -1):
+		if(Shortcut.shortcuts.has("Godot "+$main/v/tabs/Installed/v/h2/ItemList.get_item_text(_is_installed_selected))):
+			var dir = Directory.new()
+			dir.open($main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected))
+			dir.list_dir_begin()
+			var _filename = ""
+			var _f = dir.get_next()
+			while not(_f == ""):
+				if not(_f == ".." or _f == "."):
+					_filename = _f
+					break
+				_f = dir.get_next()
+			
+			var filepath = $main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename
+			
+			Shortcut.remove_shortcut(filepath)
+		
 		lib_main.rmdir($main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected))
 		$main/v/tabs/Installed/v/h2/ItemList.remove_item(_is_installed_selected)
 		_is_installed_selected = -1
 		_exit_tree()
-
-
 
 func open_file_location():
 	if not(_is_installed_selected == -1):
 # warning-ignore:return_value_discarded
 		OS.shell_open($main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected))
 
-
-func save_settings():
-	var _b = $Settings/main/v/tabs/Theme/v/button/color.color
-	var _bp = $Settings/main/v/tabs/Theme/v/buttonp/color.color
-	var _bf = $Settings/main/v/tabs/Theme/v/buttonf/color.color
-	var _background_path = $"Settings/main/v/tabs/Theme/v/background/path".text
-	var _background_shade = $"Settings/main/v/tabs/Theme/v/backgroundc/color".color
-	var _lines = $Settings/main/v/tabs/Theme/v/lines/color.color
-	var _save_data = {"lines":_lines, "background_path":_background_path, "background_shade":_background_shade, "b":_b, "bp":_bp, "bf":_bf}
-	
-	lib_main.mkfile("user://theme", "var", _save_data)
-	
-	close_settings_menu()
-
-func load_settings():
-	if(lib_main.check("user://settings")):
-		var _data = lib_main.rdfile("user://settings", "var")
-		
-		$Settings/main/v/tabs/Theme/v/button/color.color = _data.b
-		$Settings/main/v/tabs/Theme/v/buttonp/color.color = _data.bp
-		$Settings/main/v/tabs/Theme/v/buttonf/color.color = _data.bf
-		$Settings/main/v/tabs/Theme/v/lines/color.color = _data.lines
-		$Settings/main/v/tabs/Theme/v/background/path.text = _data.background_path
-		$Settings/main/v/tabs/Theme/v/backgroundc/color.color = _data.background_shade
-
-
 func save_main():
 	var _run = $Settings/main/v/tabs/Launcher/v/log/log.pressed
 	var _chunk = $Settings/main/v/tabs/Launcher/v/chunk/chunk.value
 	var _cs = $"Settings/main/v/tabs/Launcher/v/close/close".pressed
-	var _bg = background
-	background_cache = background
-	var _save_data = {"chunk":_chunk, "run":_run, "bg":_bg, "cs":_cs}
+	var _save_data = {"chunk":_chunk, "run":_run, "cs":_cs}
 	
 	lib_main.mkfile("user://main", "var", _save_data)
-	
-	
 
 func load_main():
 	if(lib_main.check("user://main")):
 		var _data = lib_main.rdfile("user://main", "var")
 		$"Settings/main/v/tabs/Launcher/v/close/close".pressed = _data.cs
-		background = _data.bg
-		background_cache = _data.bg
 		$Settings/main/v/tabs/Launcher/v/chunk/chunk.value = _data.chunk
 		$Settings/main/v/tabs/Launcher/v/log/log.pressed = _data.run
 
-
-func _set_theme_item(_name, _object, _value):
-	var _f
-	_f = self.theme.get_theme_item(Theme.DATA_TYPE_STYLEBOX, _name, _object)
-	_f.color = _value
-	self.theme.set_theme_item(Theme.DATA_TYPE_STYLEBOX, _name, _object, _f)
-
-
-func background_file_selected(path):
-	background = path
-	$backgroundtexture.texture = load(path)
-
 func _on_Copy_pressed():
 	OS.clipboard = $logging/main/v/log.text
-
 
 func _on_closel_pressed():
 	$logging.hide()
 	$shell.visible=false
 
-
-func _on_setb_pressed():
-	$background.popup_centered()
-
-
-func _on_clearb_pressed():
-	background = "default"
-	$backgroundtexture.texture = load("res://textures/background.png")
-
 func close_settings_menu():
-	if(background_cache == "default"):
-		$backgroundtexture.texture = load("res://textures/background.png")
-	else:
-		$backgroundtexture.texture = load(background_cache)
 	$Settings.hide()
 	if($shell.visible and not($Popup.visible)):
 		$shell.visible = false
+
+func set_background(path = ""):
+	$"Settings/main/v/tabs/Launcher/v/background/path".text = path
+	
+	if lib_main.check(path):
+		$"backgroundtexture".texture = lib_main.load_image(path)
+	else:
+		$"backgroundtexture".texture = load("res://textures/background.png")
+
+func update_background(new_text):
+	set_background(new_text)
+	lib_main.mkfile("user://background", "json", {"background":new_text})
+
+func load_background():
+	if(lib_main.check("user://background")):
+		
+		var path = lib_main.rdfile("user://background", "json").background
+		
+		if(lib_main.check(path)):
+			$"backgroundtexture".texture = lib_main.load_image(path)
+		else:
+			$"backgroundtexture".texture = load("res://textures/background.png")
+		
+		$"Settings/main/v/tabs/Launcher/v/background/path".text = path
+
+func _on_shortcut_pressed():
+	if not(_is_installed_selected == -1):
+#		if not(Shortcut.get_shortcut_folder()+"/Godot "+$main/v/tabs/Installed/v/h2/ItemList.get_item_text(_is_installed_selected)+"."+Shortcut.get_shortcut_extension()):
+		var dir = Directory.new()
+		dir.open($main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected))
+		dir.list_dir_begin()
+		var _filename = ""
+		var _f = dir.get_next()
+		while not(_f == ""):
+			if not(_f == ".." or _f == "."):
+				_filename = _f
+				break
+			_f = dir.get_next()
+		
+		var filepath = $main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename
+		
+		Shortcut.create_shortcut(filepath, "Godot "+$main/v/tabs/Installed/v/h2/ItemList.get_item_text(_is_installed_selected))
+#		else:
+#			lib_main.rmfile(Shortcut.get_shortcut_folder()+"/Godot "+$main/v/tabs/Installed/v/h2/ItemList.get_item_text(_is_installed_selected)+"."+Shortcut.get_shortcut_extension())
+
+
+func remove_shortcut():
+	if not(_is_installed_selected == -1):
+		var dir = Directory.new()
+		dir.open($main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected))
+		dir.list_dir_begin()
+		var _filename = ""
+		var _f = dir.get_next()
+		while not(_f == ""):
+			if not(_f == ".." or _f == "."):
+				_filename = _f
+				break
+			_f = dir.get_next()
+		
+		var filepath = $main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(_is_installed_selected)+"/"+_filename
+		
+		Shortcut.remove_shortcut(filepath)

@@ -94,7 +94,7 @@ __meta__ = {
 }
 
 [node name="ItemList" type="ItemList" parent="main/v/tabs/Installed/v/h2"]
-margin_right = 894.0
+margin_right = 871.0
 margin_bottom = 545.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -106,64 +106,76 @@ icon_mode = 0
 fixed_icon_size = Vector2( 50, 50 )
 
 [node name="VSeparator" type="VSeparator" parent="main/v/tabs/Installed/v/h2"]
-margin_left = 898.0
-margin_right = 902.0
+margin_left = 875.0
+margin_right = 879.0
 margin_bottom = 545.0
 
 [node name="options" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2"]
-margin_left = 906.0
+margin_left = 883.0
 margin_right = 1006.0
 margin_bottom = 545.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="run" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_right = 100.0
+margin_right = 123.0
 margin_bottom = 19.0
 text = "run"
 
 [node name="location" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 23.0
-margin_right = 100.0
+margin_right = 123.0
 margin_bottom = 42.0
 text = "location"
 
 [node name="remove" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 46.0
-margin_right = 100.0
+margin_right = 123.0
 margin_bottom = 65.0
 text = "remove"
 
-[node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
+[node name="shortcut" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 69.0
-margin_right = 100.0
-margin_bottom = 73.0
+margin_right = 123.0
+margin_bottom = 88.0
+text = "shortcut"
+
+[node name="rshortcut" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
+margin_top = 92.0
+margin_right = 123.0
+margin_bottom = 111.0
+text = "remove shortcut"
+
+[node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
+margin_top = 115.0
+margin_right = 123.0
+margin_bottom = 119.0
 
 [node name="down" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 77.0
-margin_right = 100.0
+margin_top = 123.0
+margin_right = 123.0
 margin_bottom = 483.0
 size_flags_vertical = 3
 
 [node name="HSeparator3" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 487.0
-margin_right = 100.0
+margin_right = 123.0
 margin_bottom = 491.0
 
 [node name="settings" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 495.0
-margin_right = 100.0
+margin_right = 123.0
 margin_bottom = 514.0
 text = "settings"
 
 [node name="exit" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 518.0
-margin_right = 100.0
+margin_right = 123.0
 margin_bottom = 537.0
 text = "exit"
 
 [node name="HSeparator4" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 541.0
-margin_right = 100.0
+margin_right = 123.0
 margin_bottom = 545.0
 
 [node name="VSeparator2" type="VSeparator" parent="main/v/tabs/Installed/v/h2"]
@@ -289,6 +301,7 @@ __meta__ = {
 }
 
 [node name="Settings" type="PopupDialog" parent="."]
+visible = true
 self_modulate = Color( 1, 1, 1, 0.505882 )
 anchor_left = 0.0371094
 anchor_top = 0.0725
@@ -371,9 +384,9 @@ margin_bottom = 19.0
 text = "rl"
 
 [node name="close" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
-margin_top = 68.0
+margin_top = 39.0
 margin_right = 928.0
-margin_bottom = 87.0
+margin_bottom = 58.0
 alignment = 1
 
 [node name="close" type="CheckBox" parent="Settings/main/v/tabs/Launcher/v/close"]
@@ -383,29 +396,24 @@ margin_bottom = 19.0
 text = "cs"
 
 [node name="background" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
-visible = false
-margin_top = 97.0
+margin_top = 68.0
 margin_right = 928.0
-margin_bottom = 116.0
+margin_bottom = 97.0
 alignment = 1
 
-[node name="setb" type="Button" parent="Settings/main/v/tabs/Launcher/v/background"]
-margin_left = 337.0
-margin_right = 451.0
-margin_bottom = 19.0
+[node name="Label" type="Label" parent="Settings/main/v/tabs/Launcher/v/background"]
+margin_left = 255.0
+margin_top = 5.0
+margin_right = 369.0
+margin_bottom = 24.0
 text = "set background"
 
-[node name="VSeparator" type="VSeparator" parent="Settings/main/v/tabs/Launcher/v/background"]
-modulate = Color( 1, 1, 1, 0 )
-margin_left = 455.0
-margin_right = 459.0
-margin_bottom = 19.0
-
-[node name="clearb" type="Button" parent="Settings/main/v/tabs/Launcher/v/background"]
-margin_left = 463.0
-margin_right = 591.0
-margin_bottom = 19.0
-text = "clear background"
+[node name="path" type="LineEdit" parent="Settings/main/v/tabs/Launcher/v/background"]
+margin_left = 373.0
+margin_right = 673.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 300, 0 )
+align = 1
 
 [node name="HSeparator2" type="HSeparator" parent="Settings/main/v"]
 margin_top = 466.0
@@ -518,24 +526,6 @@ timeout = 30
 
 [node name="file" type="HTTPRequest" parent="."]
 
-[node name="background" type="FileDialog" parent="."]
-anchor_left = 0.236328
-anchor_top = 0.236667
-anchor_right = 0.763672
-anchor_bottom = 0.763333
-popup_exclusive = true
-window_title = "Otwórz plik"
-resizable = true
-mode = 0
-access = 2
-filters = PoolStringArray( "*.png ; PNG File", "*.jpg ; JPG File", "*.jpeg ; JPEG File" )
-show_hidden_files = true
-current_dir = "/home/gameplayer/Dokumenty/godot-workspace/programs/ng/Godot-Engine-Launcher"
-current_path = "/home/gameplayer/Dokumenty/godot-workspace/programs/ng/Godot-Engine-Launcher/"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
 [node name="logging" type="Popup" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -614,6 +604,8 @@ text = "Copy"
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/run" to="." method="_on_run_pressed"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/location" to="." method="open_file_location"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/remove" to="." method="_on_remove_pressed"]
+[connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/shortcut" to="." method="_on_shortcut_pressed"]
+[connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/rshortcut" to="." method="remove_shortcut"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/settings" to="." method="open_settings"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/exit" to="." method="close_launcher"]
 [connection signal="item_selected" from="main/v/tabs/Available/v/h/ItemList" to="." method="a_l_s"]
@@ -621,8 +613,7 @@ text = "Copy"
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/reload" to="." method="reload_list"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/settings" to="." method="open_settings"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/exit" to="." method="close_launcher"]
-[connection signal="pressed" from="Settings/main/v/tabs/Launcher/v/background/setb" to="." method="_on_setb_pressed"]
-[connection signal="pressed" from="Settings/main/v/tabs/Launcher/v/background/clearb" to="." method="_on_clearb_pressed"]
+[connection signal="text_entered" from="Settings/main/v/tabs/Launcher/v/background/path" to="." method="update_background"]
 [connection signal="pressed" from="Settings/main/v/h/sc" to="." method="close_settings_menu"]
 [connection signal="pressed" from="Settings/main/v/h/sc" to="." method="save_main"]
 [connection signal="pressed" from="Settings/main/v/h/swc" to="." method="load_main"]
@@ -630,6 +621,5 @@ text = "Copy"
 [connection signal="pressed" from="Info/main/s/ok" to="." method="close_message"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="request_completed" from="file" to="." method="file_success"]
-[connection signal="file_selected" from="background" to="." method="background_file_selected"]
 [connection signal="pressed" from="logging/main/v/h/closel" to="." method="_on_closel_pressed"]
 [connection signal="pressed" from="logging/main/v/Copy" to="." method="_on_Copy_pressed"]

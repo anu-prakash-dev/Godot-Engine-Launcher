@@ -28,3 +28,5 @@ set background, Set background , Ustaw tło
 clear background, Clear background, Wyczyść tło 
 ff,"The resources list is out-to-date,\n please update it to see the newest\n versions of Godot Engine.",Biblioteka zasobów jest przestarzała\n i wymaga aktualizacji.
 rl,Run with logging session,Uruchom z trybem logowania działań
+shortcut,Create shortcut in menu,Utwórz skrót w menu
+remove shortcut,Remove shortcut,Usuń skrót

@@ -28,6 +28,7 @@ config/icon="res://textures/godot.png"
 [autoload]
 
 lib_main="*res://libs/main.gd"
+Shortcut="*res://scripts/shortcut.gd"
 
 [input]
 
