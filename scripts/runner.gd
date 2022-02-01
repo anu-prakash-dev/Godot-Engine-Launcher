@@ -10,7 +10,7 @@ extends Control
 
 var _base_url = "https://downloads.tuxfamily.org/godotengine/"
 var _current_os = "x11.64"
-var _VERSION = "2.2.1"
+var _VERSION = "2.3.1"
 
 var _is_connection_works = false
 
@@ -131,7 +131,13 @@ func _on_HTTPRequest_request_completed(_result, _response_code, _headers, _body)
 			a = _object.split('/">', true)
 			if not(a[0] == "media" or a[0] == "patreon" or a[0] == "testing" or a[0] == "toolchains" or a[0] == "ParentDirectory" or a[0] == ".."):
 				_real_debuild += [a[0]]
+				var open = false
+				for _item in range($main/v/tabs/Installed/v/h2/ItemList.get_item_count()):
+					if($main/v/tabs/Installed/v/h2/ItemList.get_item_text(_item) == str(a[0])):
+						open = true
+						break
 				$main/v/tabs/Available/v/h/ItemList.add_item(str(a[0]), load("res://textures/godot.png"))
+				$main/v/tabs/Available/v/h/ItemList.set_item_disabled($main/v/tabs/Available/v/h/ItemList.get_item_count()-1, open)
 		$main/v/tabs/Available/v/h/ItemList.remove_item(0)
 		lib_main.mkfile("user://last_reload", "var", OS.get_system_time_secs())
 		_hide_info()
@@ -146,13 +152,17 @@ func _exit_tree():
 	lib_main.mkfile("user://available", "var", $main/v/tabs/Available/v/h/ItemList.items)
 	_save_metadata()
 
+var _installed_versions = []
+
 func _load_installed():
 	if(lib_main.check("user://installed")):
+		_installed_versions = []
 		$main/v/tabs/Installed/v/h2/ItemList.items = lib_main.rdfile("user://installed", "var")
 		
 		var _tick = 0
 		while not(_tick == $main/v/tabs/Installed/v/h2/ItemList.get_item_count()):
 			$main/v/tabs/Installed/v/h2/ItemList.set_item_icon(_tick, load("res://textures/godot.png"))
+			_installed_versions += [$main/v/tabs/Installed/v/h2/ItemList.get_item_text(_tick)]
 			_tick += 1
 
 func _load_available():
@@ -162,6 +172,7 @@ func _load_available():
 		var _tick = 0
 		while not(_tick == $main/v/tabs/Available/v/h/ItemList.get_item_count()):
 			$main/v/tabs/Available/v/h/ItemList.set_item_icon(_tick, load("res://textures/godot.png"))
+			$main/v/tabs/Available/v/h/ItemList.set_item_disabled(_tick, _installed_versions.has($main/v/tabs/Available/v/h/ItemList.get_item_text(_tick)))
 			_tick += 1
 
 func _check_last_update():
@@ -226,6 +237,8 @@ func file_success(_result, response_code, _headers, _body):
 		$main/v/tabs/Installed/v/h2/ItemList.add_item($main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected), load("res://textures/godot.png"))
 		$main/v/tabs/Installed/v/h2/ItemList.set_item_metadata($main/v/tabs/Installed/v/h2/ItemList.get_item_count()-1, OS.get_user_data_dir()+"/binaries/"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected))
 		
+		$main/v/tabs/Available/v/h/ItemList.set_item_disabled(_is_available_selected, true)
+		
 		_exit_tree()
 		_hide_info()
 	else:
@@ -241,8 +254,9 @@ var _is_available_selected = -1
 
 func _on_download_pressed():
 	if not(_is_available_selected == -1):
-		_is_downloading2 = true
-		_download_file(_base_url+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"/Godot_v"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"-stable_"+_current_os+".zip", $Settings/main/v/tabs/Launcher/v/chunk/chunk.value)
+		if not($main/v/tabs/Available/v/h/ItemList.is_item_disabled(_is_available_selected)):
+			_is_downloading2 = true
+			_download_file(_base_url+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"/Godot_v"+$main/v/tabs/Available/v/h/ItemList.get_item_text(_is_available_selected)+"-stable_"+_current_os+".zip", $Settings/main/v/tabs/Launcher/v/chunk/chunk.value)
 
 
 func a_l_n():

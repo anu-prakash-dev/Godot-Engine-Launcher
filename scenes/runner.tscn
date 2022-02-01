@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/main.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/runner.gd" type="Script" id=2]
 [ext_resource path="res://textures/background.png" type="Texture" id=3]
+[ext_resource path="res://textures/design/bluebg.tres" type="StyleBox" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -78,15 +79,14 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="main/v/tabs/Installed/v"]
 margin_right = 1014.0
-margin_bottom = 4.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="h2" type="HBoxContainer" parent="main/v/tabs/Installed/v"]
-margin_top = 8.0
+margin_top = 4.0
 margin_right = 1014.0
-margin_bottom = 553.0
+margin_bottom = 557.0
 size_flags_vertical = 3
 alignment = 2
 __meta__ = {
@@ -95,7 +95,7 @@ __meta__ = {
 
 [node name="ItemList" type="ItemList" parent="main/v/tabs/Installed/v/h2"]
 margin_right = 871.0
-margin_bottom = 545.0
+margin_bottom = 553.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -108,12 +108,12 @@ fixed_icon_size = Vector2( 50, 50 )
 [node name="VSeparator" type="VSeparator" parent="main/v/tabs/Installed/v/h2"]
 margin_left = 875.0
 margin_right = 879.0
-margin_bottom = 545.0
+margin_bottom = 553.0
 
 [node name="options" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2"]
 margin_left = 883.0
 margin_right = 1006.0
-margin_bottom = 545.0
+margin_bottom = 553.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="run" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
@@ -145,46 +145,36 @@ margin_right = 123.0
 margin_bottom = 111.0
 text = "remove shortcut"
 
-[node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
+[node name="down" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 115.0
 margin_right = 123.0
-margin_bottom = 119.0
-
-[node name="down" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 123.0
-margin_right = 123.0
-margin_bottom = 483.0
+margin_bottom = 503.0
 size_flags_vertical = 3
 
 [node name="HSeparator3" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 487.0
+margin_top = 507.0
 margin_right = 123.0
-margin_bottom = 491.0
+margin_bottom = 507.0
 
 [node name="settings" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 495.0
+margin_top = 511.0
 margin_right = 123.0
-margin_bottom = 514.0
+margin_bottom = 530.0
 text = "settings"
 
 [node name="exit" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 518.0
+margin_top = 534.0
 margin_right = 123.0
-margin_bottom = 537.0
+margin_bottom = 553.0
 text = "exit"
-
-[node name="HSeparator4" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 541.0
-margin_right = 123.0
-margin_bottom = 545.0
 
 [node name="VSeparator2" type="VSeparator" parent="main/v/tabs/Installed/v/h2"]
 margin_left = 1010.0
 margin_right = 1014.0
-margin_bottom = 545.0
+margin_bottom = 553.0
 
 [node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Installed/v"]
-margin_top = 557.0
+margin_top = 561.0
 margin_right = 1014.0
 margin_bottom = 561.0
 
@@ -242,11 +232,6 @@ margin_right = 100.0
 margin_bottom = 25.0
 text = "download"
 
-[node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Available/v/h/options"]
-margin_top = 29.0
-margin_right = 100.0
-margin_bottom = 33.0
-
 [node name="down" type="VBoxContainer" parent="main/v/tabs/Available/v/h/options"]
 margin_top = 37.0
 margin_right = 100.0
@@ -276,11 +261,6 @@ margin_right = 100.0
 margin_bottom = 525.0
 text = "exit"
 
-[node name="HSeparator4" type="HSeparator" parent="main/v/tabs/Available/v/h/options"]
-margin_top = 529.0
-margin_right = 100.0
-margin_bottom = 533.0
-
 [node name="VSeparator2" type="VSeparator" parent="main/v/tabs/Available/v/h"]
 margin_left = 1002.0
 margin_right = 1006.0
@@ -301,12 +281,12 @@ __meta__ = {
 }
 
 [node name="Settings" type="PopupDialog" parent="."]
-visible = true
 self_modulate = Color( 1, 1, 1, 0.505882 )
 anchor_left = 0.0371094
 anchor_top = 0.0725
 anchor_right = 0.962891
 anchor_bottom = 0.9275
+custom_styles/panel = ExtResource( 4 )
 popup_exclusive = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -351,20 +331,19 @@ __meta__ = {
 
 [node name="chunk" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
 margin_right = 928.0
-margin_bottom = 29.0
+margin_bottom = 19.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Settings/main/v/tabs/Launcher/v/chunk"]
-margin_left = 346.0
-margin_top = 5.0
-margin_right = 503.0
-margin_bottom = 24.0
+margin_left = 351.0
+margin_right = 508.0
+margin_bottom = 19.0
 text = "download chunk size:"
 
 [node name="chunk" type="SpinBox" parent="Settings/main/v/tabs/Launcher/v/chunk"]
-margin_left = 507.0
-margin_right = 581.0
-margin_bottom = 29.0
+margin_left = 512.0
+margin_right = 576.0
+margin_bottom = 19.0
 min_value = 4096.0
 max_value = 65000.0
 value = 4096.0
@@ -384,9 +363,9 @@ margin_bottom = 19.0
 text = "rl"
 
 [node name="close" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
-margin_top = 39.0
+margin_top = 29.0
 margin_right = 928.0
-margin_bottom = 58.0
+margin_bottom = 48.0
 alignment = 1
 
 [node name="close" type="CheckBox" parent="Settings/main/v/tabs/Launcher/v/close"]
@@ -396,22 +375,21 @@ margin_bottom = 19.0
 text = "cs"
 
 [node name="background" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
-margin_top = 68.0
+margin_top = 58.0
 margin_right = 928.0
-margin_bottom = 97.0
+margin_bottom = 77.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Settings/main/v/tabs/Launcher/v/background"]
 margin_left = 255.0
-margin_top = 5.0
 margin_right = 369.0
-margin_bottom = 24.0
+margin_bottom = 19.0
 text = "set background"
 
 [node name="path" type="LineEdit" parent="Settings/main/v/tabs/Launcher/v/background"]
 margin_left = 373.0
 margin_right = 673.0
-margin_bottom = 29.0
+margin_bottom = 19.0
 rect_min_size = Vector2( 300, 0 )
 align = 1
 
@@ -461,7 +439,7 @@ margin_right = 330.0
 margin_bottom = 157.0
 
 [node name="text" type="Label" parent="Popup/main/s"]
-margin_right = 326.0
+margin_right = 325.0
 margin_bottom = 129.0
 rect_min_size = Vector2( 0, 50 )
 rect_clip_content = true
@@ -473,7 +451,7 @@ clip_text = true
 
 [node name="load" type="ProgressBar" parent="Popup/main/s"]
 margin_top = 133.0
-margin_right = 326.0
+margin_right = 325.0
 margin_bottom = 152.0
 step = 1.0
 value = 50.0
@@ -614,8 +592,8 @@ text = "Copy"
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/settings" to="." method="open_settings"]
 [connection signal="pressed" from="main/v/tabs/Available/v/h/options/exit" to="." method="close_launcher"]
 [connection signal="text_entered" from="Settings/main/v/tabs/Launcher/v/background/path" to="." method="update_background"]
-[connection signal="pressed" from="Settings/main/v/h/sc" to="." method="close_settings_menu"]
 [connection signal="pressed" from="Settings/main/v/h/sc" to="." method="save_main"]
+[connection signal="pressed" from="Settings/main/v/h/sc" to="." method="close_settings_menu"]
 [connection signal="pressed" from="Settings/main/v/h/swc" to="." method="load_main"]
 [connection signal="pressed" from="Settings/main/v/h/swc" to="." method="close_settings_menu"]
 [connection signal="pressed" from="Info/main/s/ok" to="." method="close_message"]
