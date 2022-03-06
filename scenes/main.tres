@@ -7,6 +7,7 @@
 [ext_resource path="res://textures/design/hover.tres" type="StyleBox" id=5]
 [ext_resource path="res://textures/design/pressed.tres" type="StyleBox" id=6]
 [ext_resource path="res://textures/design/normal.tres" type="StyleBox" id=7]
+[ext_resource path="res://textures/emptytexture.tres" type="Texture" id=8]
 
 [sub_resource type="StyleBoxLine" id=12]
 color = Color( 0, 0.282353, 0.407843, 1 )
@@ -16,9 +17,6 @@ thickness = 3
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0, 0, 0, 0.145098 )
-
-[sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 0.0588235, 0.12549, 0.196078, 0.368627 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0.117647, 0.215686, 0.388235 )
@@ -52,16 +50,22 @@ vertical = true
 [resource]
 default_font = ExtResource( 1 )
 Button/styles/disabled = ExtResource( 4 )
-Button/styles/focus = ExtResource( 2 )
 Button/styles/hover = ExtResource( 5 )
 Button/styles/normal = ExtResource( 7 )
 Button/styles/pressed = ExtResource( 6 )
+CheckBox/icons/checked = ExtResource( 8 )
+CheckBox/icons/checked_disabled = ExtResource( 8 )
+CheckBox/icons/radio_checked = ExtResource( 8 )
+CheckBox/icons/radio_checked_disabled = ExtResource( 8 )
+CheckBox/icons/radio_unchecked = ExtResource( 8 )
+CheckBox/icons/radio_unchecked_disabled = ExtResource( 8 )
+CheckBox/icons/unchecked = ExtResource( 8 )
+CheckBox/icons/unchecked_disabled = ExtResource( 8 )
 HSeparator/constants/separation = 0
 HSeparator/styles/separator = SubResource( 12 )
 ItemList/colors/font_color = Color( 0.305882, 0.423529, 0.462745, 1 )
 ItemList/colors/font_color_selected = Color( 0, 0.345098, 0.482353, 1 )
 ItemList/styles/bg = SubResource( 8 )
-ItemList/styles/bg_focus = SubResource( 9 )
 ItemList/styles/selected = ExtResource( 2 )
 ItemList/styles/selected_focus = ExtResource( 6 )
 LineEdit/colors/font_color = Color( 0, 0.559006, 1, 1 )
