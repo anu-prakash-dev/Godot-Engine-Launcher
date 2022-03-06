@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/main.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/runner.gd" type="Script" id=2]
-[ext_resource path="res://textures/background.png" type="Texture" id=3]
 [ext_resource path="res://textures/design/bluebg.tres" type="StyleBox" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
@@ -20,7 +19,7 @@ __meta__ = {
 [node name="backgroundcolor" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0941176, 0.133333, 0.145098, 1 )
+color = Color( 0, 0.180392, 0.235294, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -30,7 +29,6 @@ self_modulate = Color( 1, 1, 1, 0.235294 )
 material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -68,7 +66,7 @@ tab_align = 0
 [node name="Installed" type="Tabs" parent="main/v/tabs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 29.0
+margin_top = 30.0
 
 [node name="v" type="VBoxContainer" parent="main/v/tabs/Installed"]
 anchor_right = 1.0
@@ -77,16 +75,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator" type="HSeparator" parent="main/v/tabs/Installed/v"]
-margin_right = 1014.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="h2" type="HBoxContainer" parent="main/v/tabs/Installed/v"]
-margin_top = 4.0
 margin_right = 1014.0
-margin_bottom = 557.0
+margin_bottom = 560.0
 size_flags_vertical = 3
 alignment = 2
 __meta__ = {
@@ -94,8 +85,8 @@ __meta__ = {
 }
 
 [node name="ItemList" type="ItemList" parent="main/v/tabs/Installed/v/h2"]
-margin_right = 871.0
-margin_bottom = 553.0
+margin_right = 910.0
+margin_bottom = 560.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -105,78 +96,56 @@ max_columns = 50
 icon_mode = 0
 fixed_icon_size = Vector2( 50, 50 )
 
-[node name="VSeparator" type="VSeparator" parent="main/v/tabs/Installed/v/h2"]
-margin_left = 875.0
-margin_right = 879.0
-margin_bottom = 553.0
-
 [node name="options" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2"]
-margin_left = 883.0
-margin_right = 1006.0
-margin_bottom = 553.0
+margin_left = 914.0
+margin_right = 1014.0
+margin_bottom = 560.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="run" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_right = 123.0
-margin_bottom = 19.0
+margin_right = 100.0
+margin_bottom = 20.0
+disabled = true
 text = "run"
 
 [node name="location" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 23.0
-margin_right = 123.0
-margin_bottom = 42.0
+margin_top = 24.0
+margin_right = 100.0
+margin_bottom = 44.0
+disabled = true
 text = "location"
 
 [node name="remove" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 46.0
-margin_right = 123.0
-margin_bottom = 65.0
+margin_top = 48.0
+margin_right = 100.0
+margin_bottom = 68.0
+disabled = true
 text = "remove"
 
 [node name="shortcut" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 69.0
-margin_right = 123.0
-margin_bottom = 88.0
+margin_top = 72.0
+margin_right = 100.0
+margin_bottom = 92.0
+disabled = true
 text = "shortcut"
 
-[node name="rshortcut" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 92.0
-margin_right = 123.0
-margin_bottom = 111.0
-text = "remove shortcut"
-
 [node name="down" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 115.0
-margin_right = 123.0
-margin_bottom = 503.0
+margin_top = 96.0
+margin_right = 100.0
+margin_bottom = 512.0
 size_flags_vertical = 3
 
-[node name="HSeparator3" type="HSeparator" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 507.0
-margin_right = 123.0
-margin_bottom = 507.0
-
 [node name="settings" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 511.0
-margin_right = 123.0
-margin_bottom = 530.0
+margin_top = 516.0
+margin_right = 100.0
+margin_bottom = 536.0
 text = "settings"
 
 [node name="exit" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_top = 534.0
-margin_right = 123.0
-margin_bottom = 553.0
+margin_top = 540.0
+margin_right = 100.0
+margin_bottom = 560.0
 text = "exit"
-
-[node name="VSeparator2" type="VSeparator" parent="main/v/tabs/Installed/v/h2"]
-margin_left = 1010.0
-margin_right = 1014.0
-margin_bottom = 553.0
-
-[node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Installed/v"]
-margin_top = 561.0
-margin_right = 1014.0
-margin_bottom = 561.0
 
 [node name="Available" type="Tabs" parent="main/v/tabs"]
 visible = false
@@ -190,10 +159,6 @@ anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="HSeparator" type="HSeparator" parent="main/v/tabs/Available/v"]
-margin_right = 1006.0
-margin_bottom = 4.0
 
 [node name="h" type="HBoxContainer" parent="main/v/tabs/Available/v"]
 margin_top = 8.0
@@ -216,11 +181,6 @@ max_columns = 50
 icon_mode = 0
 fixed_icon_size = Vector2( 50, 50 )
 
-[node name="VSeparator" type="VSeparator" parent="main/v/tabs/Available/v/h"]
-margin_left = 890.0
-margin_right = 894.0
-margin_bottom = 533.0
-
 [node name="options" type="VBoxContainer" parent="main/v/tabs/Available/v/h"]
 margin_left = 898.0
 margin_right = 998.0
@@ -230,6 +190,7 @@ rect_min_size = Vector2( 100, 0 )
 [node name="download" type="Button" parent="main/v/tabs/Available/v/h/options"]
 margin_right = 100.0
 margin_bottom = 25.0
+disabled = true
 text = "download"
 
 [node name="down" type="VBoxContainer" parent="main/v/tabs/Available/v/h/options"]
@@ -244,11 +205,6 @@ margin_right = 100.0
 margin_bottom = 459.0
 text = "reload"
 
-[node name="HSeparator3" type="HSeparator" parent="main/v/tabs/Available/v/h/options"]
-margin_top = 463.0
-margin_right = 100.0
-margin_bottom = 467.0
-
 [node name="settings" type="Button" parent="main/v/tabs/Available/v/h/options"]
 margin_top = 471.0
 margin_right = 100.0
@@ -260,16 +216,6 @@ margin_top = 500.0
 margin_right = 100.0
 margin_bottom = 525.0
 text = "exit"
-
-[node name="VSeparator2" type="VSeparator" parent="main/v/tabs/Available/v/h"]
-margin_left = 1002.0
-margin_right = 1006.0
-margin_bottom = 533.0
-
-[node name="HSeparator2" type="HSeparator" parent="main/v/tabs/Available/v"]
-margin_top = 545.0
-margin_right = 1006.0
-margin_bottom = 549.0
 
 [node name="shell" type="Panel" parent="."]
 visible = false
@@ -319,7 +265,7 @@ use_hidden_tabs_for_min_size = true
 [node name="Launcher" type="Tabs" parent="Settings/main/v/tabs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 29.0
+margin_top = 30.0
 
 [node name="v" type="VBoxContainer" parent="Settings/main/v/tabs/Launcher"]
 anchor_right = 1.0
@@ -328,6 +274,12 @@ custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HSeparator" type="HSeparator" parent="Settings/main/v/tabs/Launcher/v"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = 10
 
 [node name="chunk" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
 margin_right = 928.0
@@ -339,6 +291,12 @@ margin_left = 351.0
 margin_right = 508.0
 margin_bottom = 19.0
 text = "download chunk size:"
+
+[node name="VSeparator" type="VSeparator" parent="Settings/main/v/tabs/Launcher/v/chunk"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = 10
 
 [node name="chunk" type="SpinBox" parent="Settings/main/v/tabs/Launcher/v/chunk"]
 margin_left = 512.0
@@ -386,17 +344,18 @@ margin_right = 369.0
 margin_bottom = 19.0
 text = "set background"
 
+[node name="VSeparator" type="VSeparator" parent="Settings/main/v/tabs/Launcher/v/background"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = 10
+
 [node name="path" type="LineEdit" parent="Settings/main/v/tabs/Launcher/v/background"]
 margin_left = 373.0
 margin_right = 673.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 300, 0 )
 align = 1
-
-[node name="HSeparator2" type="HSeparator" parent="Settings/main/v"]
-margin_top = 466.0
-margin_right = 928.0
-margin_bottom = 470.0
 
 [node name="h" type="HBoxContainer" parent="Settings/main/v"]
 margin_top = 474.0
@@ -504,86 +463,11 @@ timeout = 30
 
 [node name="file" type="HTTPRequest" parent="."]
 
-[node name="logging" type="Popup" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -481.0
-margin_top = -276.0
-margin_right = 466.0
-margin_bottom = 270.0
-popup_exclusive = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="logging"]
-self_modulate = Color( 1, 1, 1, 0.560784 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="main" type="MarginContainer" parent="logging"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-
-[node name="v" type="VBoxContainer" parent="logging/main"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 942.0
-margin_bottom = 541.0
-
-[node name="h" type="HBoxContainer" parent="logging/main/v"]
-margin_right = 937.0
-margin_bottom = 19.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="logging/main/v/h"]
-margin_right = 885.0
-margin_bottom = 19.0
-size_flags_horizontal = 3
-text = "Log:"
-align = 1
-
-[node name="closel" type="Button" parent="logging/main/v/h"]
-modulate = Color( 1, 0.192157, 0.192157, 1 )
-margin_left = 889.0
-margin_right = 937.0
-margin_bottom = 19.0
-text = " Close "
-
-[node name="HSeparator" type="HSeparator" parent="logging/main/v"]
-margin_top = 23.0
-margin_right = 937.0
-margin_bottom = 27.0
-
-[node name="log" type="RichTextLabel" parent="logging/main/v"]
-margin_top = 31.0
-margin_right = 937.0
-margin_bottom = 513.0
-size_flags_vertical = 3
-
-[node name="Copy" type="Button" parent="logging/main/v"]
-margin_top = 517.0
-margin_right = 937.0
-margin_bottom = 536.0
-text = "Copy"
-
 [connection signal="item_selected" from="main/v/tabs/Installed/v/h2/ItemList" to="." method="i_l_s"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/run" to="." method="_on_run_pressed"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/location" to="." method="open_file_location"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/remove" to="." method="_on_remove_pressed"]
-[connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/shortcut" to="." method="_on_shortcut_pressed"]
-[connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/rshortcut" to="." method="remove_shortcut"]
+[connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/shortcut" to="." method="shortcut_button"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/settings" to="." method="open_settings"]
 [connection signal="pressed" from="main/v/tabs/Installed/v/h2/options/exit" to="." method="close_launcher"]
 [connection signal="item_selected" from="main/v/tabs/Available/v/h/ItemList" to="." method="a_l_s"]
@@ -599,5 +483,3 @@ text = "Copy"
 [connection signal="pressed" from="Info/main/s/ok" to="." method="close_message"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="request_completed" from="file" to="." method="file_success"]
-[connection signal="pressed" from="logging/main/v/h/closel" to="." method="_on_closel_pressed"]
-[connection signal="pressed" from="logging/main/v/Copy" to="." method="_on_Copy_pressed"]
