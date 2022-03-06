@@ -10,13 +10,5 @@ This app is builded by me (GamePlayer) on MIT License to Download (or import) Go
 
  - [Here](./licenses/godot) is the info.
 
-### Releases:
- - [Godot Engine Launcher 2.3.1](https://github.com/GamePlayer-PL/Godot-Engine-Launcher/releases/tag/2.3.1)
- - [Godot Engine Launcher 2.3](https://github.com/GamePlayer-PL/Godot-Engine-Launcher/releases/tag/2.3)
- - [Godot Engine Launcher 2.2.1](https://github.com/GamePlayer-PL/Godot-Engine-Launcher/releases/tag/2.2.1)
- - [Godot Engine Launcher 2.2](https://github.com/GamePlayer-PL/Godot-Engine-Launcher/releases/tag/2.2)
- - [Godot Engine Launcher 1.2.2](https://github.com/GamePlayer-PL/Godot-Engine-Launcher/releases/tag/1.2.2)
- - [Godot Engine Launcher 1.2.1](https://github.com/GamePlayer-PL/Godot-Engine-Launcher/releases/tag/1.2.1)
- - [Godot Engine Launcher 1.2](https://github.com/GamePlayer-PL/Godot-Engine-Launcher/releases/tag/1.2)
- - [Godot Engine Launcher 1.1](https://github.com/GamePlayer-PL/Godot-Engine-Launcher/releases/tag/1.1)
- - [Godot Engine Launcher 1.0](https://github.com/GamePlayer-PL/Godot-Engine-Launcher/releases/tag/1.0)
+### Compiled
+Here is the [download page](https://github.com/GamePlayer-PL/Godot-Engine-Launcher/releases).
