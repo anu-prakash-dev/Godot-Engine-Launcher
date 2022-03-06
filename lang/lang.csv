@@ -21,11 +21,11 @@ Close without saving,Close without saving,Zamknij bez zapisywania
 Save & close,Save & close,Zapisz i zamknij
 location,Location,Lokalizacja
 Copy,Copy,Kopiuj
-download chunk size:,Download Chunk Size: ,Wielkość przechwytywanych pakietów: 
+download chunk size:,Download Chunk Size: ,Wielkość przechwytywanych pakietów:
 Run with logging,Run with logging,Uruchom z trybem logowania działań
 cs,Close launcher after run,Zamknij launcher po uruchomieniu
-set background, Set background , Ustaw tło
-clear background, Clear background, Wyczyść tło 
+set background, Set background: , Ustaw tło:
+clear background, Clear background: , Wyczyść tło:
 ff,"The resources list is out-to-date,\n please update it to see the newest\n versions of Godot Engine.",Biblioteka zasobów jest przestarzała\n i wymaga aktualizacji.
 rl,Run with logging session,Uruchom z trybem logowania działań
 shortcut,Create shortcut in menu,Utwórz skrót w menu
