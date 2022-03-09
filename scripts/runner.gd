@@ -202,7 +202,6 @@ func close_message():
 	$Info.hide()
 	$shell.visible=false
 	$Popup.hide()
-	$logging.hide()
 	$Settings.hide()
 
 
@@ -355,7 +354,7 @@ func _on_run_pressed():
 func _on_remove_pressed():
 	""" Remove Godot version """
 	if not INSTALLED_SELECTED == -1:
-		if Shortcut.shortcuts.has("Godot "+$main/v/tabs/Installed/v/h2/ItemList.get_item_text(INSTALLED_SELECTED)):
+		if Shortcut.SHORTCUTS.has("Godot "+$main/v/tabs/Installed/v/h2/ItemList.get_item_text(INSTALLED_SELECTED)):
 			var dir = Directory.new()
 			dir.open($main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(INSTALLED_SELECTED))
 			dir.list_dir_begin()
@@ -396,11 +395,6 @@ func load_main():
 		var _data = lib_main.rdfile("user://main", "var")
 		$"Settings/main/v/tabs/Launcher/v/close/close".pressed = _data.cs
 		$Settings/main/v/tabs/Launcher/v/chunk/chunk.value = _data.chunk
-
-func _on_closel_pressed():
-	""" Close popup """
-	$logging.hide()
-	$shell.visible=false
 
 func close_settings_menu():
 	""" Close settings menu """
