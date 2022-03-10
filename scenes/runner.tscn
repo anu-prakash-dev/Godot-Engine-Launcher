@@ -85,7 +85,7 @@ __meta__ = {
 }
 
 [node name="ItemList" type="ItemList" parent="main/v/tabs/Installed/v/h2"]
-margin_right = 910.0
+margin_right = 880.0
 margin_bottom = 560.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -97,53 +97,53 @@ icon_mode = 0
 fixed_icon_size = Vector2( 50, 50 )
 
 [node name="options" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2"]
-margin_left = 914.0
+margin_left = 884.0
 margin_right = 1014.0
 margin_bottom = 560.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="run" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
-margin_right = 100.0
+margin_right = 130.0
 margin_bottom = 20.0
 disabled = true
 text = "Run"
 
 [node name="location" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 24.0
-margin_right = 100.0
+margin_right = 130.0
 margin_bottom = 44.0
 disabled = true
 text = "Location"
 
 [node name="remove" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 48.0
-margin_right = 100.0
+margin_right = 130.0
 margin_bottom = 68.0
 disabled = true
 text = "Remove"
 
 [node name="shortcut" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 72.0
-margin_right = 100.0
+margin_right = 130.0
 margin_bottom = 92.0
 disabled = true
-text = "Shortcut"
+text = "Create shortcut"
 
 [node name="down" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 96.0
-margin_right = 100.0
+margin_right = 130.0
 margin_bottom = 512.0
 size_flags_vertical = 3
 
 [node name="settings" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 516.0
-margin_right = 100.0
+margin_right = 130.0
 margin_bottom = 536.0
 text = "Settings"
 
 [node name="exit" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 540.0
-margin_right = 100.0
+margin_right = 130.0
 margin_bottom = 560.0
 text = "Exit"
 

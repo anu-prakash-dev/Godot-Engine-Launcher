@@ -317,7 +317,7 @@ func i_l_s(index):
 	if Shortcut.shortcut_exist(filepath):
 		$main/v/tabs/Installed/v/h2/options/shortcut.text = "Remove shortcut"
 	else:
-		$main/v/tabs/Installed/v/h2/options/shortcut.text = "Shortcut"
+		$main/v/tabs/Installed/v/h2/options/shortcut.text = "Create shortcut"
 
 func _on_run_pressed():
 	""" Start executable Godot file """
