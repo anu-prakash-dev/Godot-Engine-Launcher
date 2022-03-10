@@ -1,32 +1,33 @@
-keys,en,pl
-reload,Reloading database…,Przeładowywanie bazy danych…
-load,Loading database…,Ładowanie bazy danych…
-download,Download,Pobierz
-run,Run,Uruchom
-edit,Edit,Edytuj
-remove,Remove,Usuń
-exit,Exit,Wyjdź
-settings,Settings,Ustawienia
-Launcher,Launcher,Ogólne
-Updater,Updater,Aktualizator
-filemanager,File Manager,Menedżer plików
-Theme,Theme,Wygląd
-du,Downloading packages…,Pobieranie pakietów…
-chunk,Download chunk size,Wielkość przechwytywanych pakietów
-reinstall,Reinstall,Reinstaluj
-P,Please wait…,Czekaj…
-Installed,Installed,Zainstalowane
-Available,Available,Dostępne
-Close without saving,Close without saving,Zamknij bez zapisywania
-Save & close,Save & close,Zapisz i zamknij
-location,Location,Lokalizacja
-Copy,Copy,Kopiuj
-download chunk size:,Download Chunk Size: ,Wielkość przechwytywanych pakietów:
-Run with logging,Run with logging,Uruchom z trybem logowania działań
-cs,Close launcher after run,Zamknij launcher po uruchomieniu
-set background, Set background: , Ustaw tło:
-clear background, Clear background: , Wyczyść tło:
-ff,"The resources list is out-to-date,\n please update it to see the newest\n versions of Godot Engine.",Biblioteka zasobów jest przestarzała\n i wymaga aktualizacji.
-rl,Run with logging session,Uruchom z trybem logowania działań
-shortcut,Create shortcut in menu,Utwórz skrót w menu
-remove shortcut,Remove shortcut,Usuń skrót
+keys,en,pl,ru,ja,fr,it,de,es
+,,,,,,,,
+"Reload database","Reload database","Przeładuj bazę danych.","Перезагрузить базу данных","データベースをリロードします","Base de données de rechargement","Reload Database","Datenbank neu laden","Base de datos de recarga"
+"Loading database...","Loading database...","Ładowanie bazy danych ...","Загрузка базы данных ...","データベースのロード...","Chargement de la base de données ...","Database di caricamento ...","Datenbank laden ...","Base de datos de carga ..."
+"Download","Download","Pobierz","Скачать","ダウンロード","Télécharger","Scaricamento","Herunterladen","Descargar"
+"Run","Run","Uruchom","Бегать","走る","Cours","Correre","Laufen","Correr"
+"Edit","Edit","Edytuj","Редактировать","編集","Éditer","Modificare","Bearbeiten","Editar"
+"Remove","Remove","Usuń","Удалить","削除","retirer","rimuovere","Löschen","retirar"
+"Exit","Exit","Wyjście","Выход","出口","Sortir","Uscita","Ausgang","Salida"
+"Settings","Settings","Ustawienia","Настройки","設定","Réglages","Impostazioni","Einstellungen","Ajustes"
+"Launcher","Launcher","Launcher","Пусковая установка","ランチャー","","Launcher.","Startprogramm","Lanzacohetes"
+"Updater","Updater","Updater.","Updater.","更新","Updater","Updater","Eukthater.",""
+"File Manager","File Manager","Menedżer plików","Файловый менеджер","ファイル管理","Gestionnaire de fichiers","File Manager","Dateimanager","Administrador de archivos"
+"Theme","Theme","Wygląd","Тема","テーマ","Thème","Tema","Thema","Tema"
+"Downloading packages...","Downloading packages...","Pobieranie pakietów ...","Загрузка пакетов ...","ダウンロードパッケージ...","Téléchargement de packages ...","Download di pacchetti ...","Herunterladen von Paketen ...","Paquetes de descarga..."
+"Download chunk size","Download chunk size","Pobierz rozmiar porcji.","Скачать размер куска","チャンクサイズをダウンロードしてください","Télécharger la taille du morceau","Scarica il formato della formato","Laden Sie die Chunk-Größe herunter","Descargar el tamaño del trozo"
+"Reinstall","Reinstall","Ponownie zainstalować","Переустановить","再インストールします","Réinstaller","Reinstallare","Installieren","Reinstalar"
+"Please wait...","Please wait...","Proszę czekać...","Пожалуйста, подождите...","お待ちください...","S'il vous plaît, attendez...","Attendere prego...","Warten Sie mal...","Espere por favor..."
+"Installed","Installed","Zainstalowany","Установлены","installed installed","","Installato","Eingerichtet",""
+"Available","Available","Do dyspozycji","Доступный","利用可能","Disponible","A disposizione","Erhältlich","Disponible"
+"Close without saving","Close without saving","Zamknij bez zapisywania","Близко без сохранения","節約なしで閉じる","Fermer sans économiser","Chiudi senza salvare.","Schließen ohne speichern","Cerrar sin guardar"
+"Save & close","Save & close","Zapisz & Close.","Сохранить и закрыть","保存＆クローズ","Sauvegarder et fermer","Salva e chiudi.","Save & Close.","Guardar cerrar"
+"Location","Location","Lokalizacja","Место нахождения","位置","Lieu","Posizione","Standort","Ubicación"
+"Copy","Copy","Kopiuj","Скопировать","コピー","Copie","copia","Kopieren","Dupdo"
+"Download chunk size:","Download chunk size:","Pobierz rozmiar Chunk:","Скачать размер куска:","チャンクサイズをダウンロードしてください：","Télécharger la taille du morceau:","Scarica il pezzo di formato:","Laden Sie die Chunk-Größe herunter:","Descargar el tamaño del trozo:"
+"Run with logging","Run with logging","Biegnij z logowaniem","Бежать с величием","ロギングで実行します","Courir avec la journalisation","Corri con la registrazione","Mit der Protokollierung laufen","Correr con el registro"
+"Close launcher after run","Close launcher after run","Zamknij wyrzutnia po uruchomieniu","Закрыть пусковую установку после запуска","runの後にランチャーを閉じる","Close Launcher après la course","Chiudi launcher dopo l'esecuzione","Schließen Sie den Launcher nach dem Lauf","Cerrar Lanzador después de correr"
+"Set background","Set background","Ustawić tło","Установить фон","背景を設定します","Mettre en arrière-plan","Imposta sfondo.","Hintergrund einstellen","Definir fondo"
+"Clear background","Clear background","Jasne tło","Прозрачный фон","明確な背景を鮮明に","Fond clair","Sfondo chiaro","Klarer Hintergrund","Fondo claro"
+"The resources list is out-to-date,\n please update it to see the newest\n versions of Godot Engine.","The resources list is out-to-date,\n please update it to see the newest\n versions of Godot Engine.","Lista zasobów jest aktualna, n proszę zaktualizować go, aby zobaczyć najnowsze wersje silnika Godot.","Список ресурсов входит втулку, \ N, пожалуйста, обновите его, чтобы увидеть новейшие \ n версий Godot Engine.","リソースリストは最新のものです、\ N GODOTエンジンの最新\ Nバージョンを見るために更新してください。","La liste des ressources est à jour, \ N Veuillez le mettre à jour pour voir les dernières versions \ N de Godot Engine.","L'elenco delle risorse è out-to-date, \ n Si prega di aggiornarlo per vedere le ultime versioni \ N del motore Godot.","Die Ressourcenliste ist über den aktuellen, \ n Bitte aktualisieren Sie es, um die neuesten \ n-Versionen von Godot Engine zu sehen.","La lista de recursos está fuera de fecha, \ N, por favor, actualícelo para ver las versiones Newest \ N de Godot Engine."
+"Run with logging session","Run with logging session","Uruchom z sesją logowania","Беги с сеансом регистрации","ロギングセッションで実行します","Courir avec une séance de journalisation","Esegui con la sessione di registrazione","Lauf mit der Protokollierung","Ejecutar con sesión de registro"
+"Create shortcut","Create shortcut","Utwórz skrót","Создать ярлык","ショートカットを作成する","Créer un raccourci","Creare una scorciatoia","Verknüpfung erstellen","Crear acceso directo"
+"Remove shortcut","Remove shortcut","Usuń skrót","Удалить ярлык","ショートカットを削除します","Supprimer le raccourci","Rimuovi scorciatoia","Verknüpfung entfernen.","Quitar el acceso directo"

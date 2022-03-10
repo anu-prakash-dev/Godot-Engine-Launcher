@@ -106,28 +106,28 @@ rect_min_size = Vector2( 100, 0 )
 margin_right = 100.0
 margin_bottom = 20.0
 disabled = true
-text = "run"
+text = "Run"
 
 [node name="location" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 24.0
 margin_right = 100.0
 margin_bottom = 44.0
 disabled = true
-text = "location"
+text = "Location"
 
 [node name="remove" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 48.0
 margin_right = 100.0
 margin_bottom = 68.0
 disabled = true
-text = "remove"
+text = "Remove"
 
 [node name="shortcut" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 72.0
 margin_right = 100.0
 margin_bottom = 92.0
 disabled = true
-text = "shortcut"
+text = "Shortcut"
 
 [node name="down" type="VBoxContainer" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 96.0
@@ -139,13 +139,13 @@ size_flags_vertical = 3
 margin_top = 516.0
 margin_right = 100.0
 margin_bottom = 536.0
-text = "settings"
+text = "Settings"
 
 [node name="exit" type="Button" parent="main/v/tabs/Installed/v/h2/options"]
 margin_top = 540.0
 margin_right = 100.0
 margin_bottom = 560.0
-text = "exit"
+text = "Exit"
 
 [node name="Available" type="Tabs" parent="main/v/tabs"]
 visible = false
@@ -191,7 +191,7 @@ rect_min_size = Vector2( 100, 0 )
 margin_right = 100.0
 margin_bottom = 25.0
 disabled = true
-text = "download"
+text = "Download"
 
 [node name="down" type="VBoxContainer" parent="main/v/tabs/Available/v/h/options"]
 margin_top = 37.0
@@ -203,19 +203,19 @@ size_flags_vertical = 3
 margin_top = 434.0
 margin_right = 100.0
 margin_bottom = 459.0
-text = "reload"
+text = "Reload database"
 
 [node name="settings" type="Button" parent="main/v/tabs/Available/v/h/options"]
 margin_top = 471.0
 margin_right = 100.0
 margin_bottom = 496.0
-text = "settings"
+text = "Settings"
 
 [node name="exit" type="Button" parent="main/v/tabs/Available/v/h/options"]
 margin_top = 500.0
 margin_right = 100.0
 margin_bottom = 525.0
-text = "exit"
+text = "Exit"
 
 [node name="shell" type="Panel" parent="."]
 visible = false
@@ -290,7 +290,7 @@ alignment = 1
 margin_left = 351.0
 margin_right = 508.0
 margin_bottom = 19.0
-text = "download chunk size:"
+text = "Download chunk size:"
 
 [node name="VSeparator" type="VSeparator" parent="Settings/main/v/tabs/Launcher/v/chunk"]
 modulate = Color( 1, 1, 1, 0 )
@@ -307,19 +307,6 @@ max_value = 65000.0
 value = 4096.0
 rounded = true
 
-[node name="log" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
-visible = false
-margin_top = 39.0
-margin_right = 928.0
-margin_bottom = 58.0
-alignment = 1
-
-[node name="log" type="CheckBox" parent="Settings/main/v/tabs/Launcher/v/log"]
-margin_left = 361.0
-margin_right = 566.0
-margin_bottom = 19.0
-text = "rl"
-
 [node name="close" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
 margin_top = 29.0
 margin_right = 928.0
@@ -330,7 +317,7 @@ alignment = 1
 margin_left = 446.0
 margin_right = 482.0
 margin_bottom = 19.0
-text = "cs"
+text = "Close launcher after run"
 
 [node name="background" type="HBoxContainer" parent="Settings/main/v/tabs/Launcher/v"]
 margin_top = 58.0
@@ -342,7 +329,7 @@ alignment = 1
 margin_left = 255.0
 margin_right = 369.0
 margin_bottom = 19.0
-text = "set background"
+text = "Set background"
 
 [node name="VSeparator" type="VSeparator" parent="Settings/main/v/tabs/Launcher/v/background"]
 modulate = Color( 1, 1, 1, 0 )

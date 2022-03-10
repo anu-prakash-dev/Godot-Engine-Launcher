@@ -13,7 +13,7 @@ var CONNECTION_WORKS = false
 
 func _ready():
 	""" Load everything what's needed """
-	_info("load", 50)
+	_info("Loading database...", 50)
 	_check_version()
 	_load_installed()
 	_load_available()
@@ -97,7 +97,7 @@ var DOWNLOADING = false
 
 func _download(link = "", chunk_size = 4096):
 	""" Download file """
-	_info("du", 0)
+	_info("Downloading packages...", 0)
 	$HTTPRequest.download_chunk_size = chunk_size
 	$HTTPRequest.request(link)
 	DOWNLOADING = true
@@ -105,7 +105,7 @@ func _download(link = "", chunk_size = 4096):
 func _get_HTTPRequest_download_level():
 	""" Get download state """
 	var procent = (($HTTPRequest.get_downloaded_bytes()/1000000)+0.01)/(($HTTPRequest.get_body_size()/1000000)+0.01)*100
-	_info("du", round(procent))
+	_info("Downloading packages...", round(procent))
 
 onready var TIME = OS.get_system_time_msecs()
 var DOWNLOADING2 = false
@@ -123,12 +123,12 @@ func _process(_delta):
 func _get_file_download_level():
 	""" Get download state """
 	var procent = (($file.get_downloaded_bytes()/1000000)+0.01)/(($file.get_body_size()/1000000)+0.01)*100
-	_info("du", procent)
+	_info("Downloading packages...", procent)
 
 func _on_HTTPRequest_request_completed(_result, _response_code, _headers, _body):
 	""" Save all available versions after fetching """
 	DOWNLOADING = false
-	_info("P", 50)
+	_info("Please wait...", 50)
 	if _response_code == 200:
 		CONNECTION_WORKS = true
 		var _decoded = _body.get_string_from_utf8()
@@ -190,11 +190,11 @@ func _check_last_update():
 	""" Report outdated version list """
 	if not lib_main.check("user://last_reload"):
 		lib_main.mkfile("user://last_reload", "var", -1)
-		_message("ff")
+		_message("The resources list is out-to-date,\n please update it to see the newest\n versions of Godot Engine.")
 	else:
 		var _data = lib_main.rdfile("user://last_reload", "var")
 		if OS.get_system_time_secs()-1209600 > _data:
-			_message("ff")
+			_message("The resources list is out-to-date,\n please update it to see the newest\n versions of Godot Engine.")
 
 
 func close_message():
@@ -315,9 +315,9 @@ func i_l_s(index):
 
 	var filepath = $main/v/tabs/Installed/v/h2/ItemList.get_item_metadata(INSTALLED_SELECTED)+"/"+_filename
 	if Shortcut.shortcut_exist(filepath):
-		$main/v/tabs/Installed/v/h2/options/shortcut.text = "remove shortcut"
+		$main/v/tabs/Installed/v/h2/options/shortcut.text = "Remove shortcut"
 	else:
-		$main/v/tabs/Installed/v/h2/options/shortcut.text = "shortcut"
+		$main/v/tabs/Installed/v/h2/options/shortcut.text = "Shortcut"
 
 func _on_run_pressed():
 	""" Start executable Godot file """

@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://lang/lang.en.translation", "res://lang/lang.pl.translation" ]
+files=[ "res://lang/lang.en.translation", "res://lang/lang.pl.translation", "res://lang/lang.ru.translation", "res://lang/lang.ja.translation", "res://lang/lang.fr.translation", "res://lang/lang.it.translation", "res://lang/lang.de.translation", "res://lang/lang.es.translation" ]
 
 source_file="res://lang/lang.csv"
-dest_files=[ "res://lang/lang.en.translation", "res://lang/lang.pl.translation" ]
+dest_files=[ "res://lang/lang.en.translation", "res://lang/lang.pl.translation", "res://lang/lang.ru.translation", "res://lang/lang.ja.translation", "res://lang/lang.fr.translation", "res://lang/lang.it.translation", "res://lang/lang.de.translation", "res://lang/lang.es.translation" ]
 
 [params]
 
