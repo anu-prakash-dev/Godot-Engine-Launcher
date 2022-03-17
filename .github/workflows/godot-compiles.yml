@@ -1,0 +1,82 @@
+name: 'GODOT: Build binaries & pack to zip'
+
+env:
+  GODOT_VERSION: 3.4.2
+  COMPILE_NAME: Godot-Engine-Launcher
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  binaries:
+    runs-on: ubuntu-18.04
+
+    container:
+      image: barichello/godot-ci:3.4.2
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Move templates into position
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+
+      - name: Create builds directory
+        run: mkdir -v -p builds
+
+      - name: Create linux directory
+        run: mkdir -v -p builds/linux
+
+      - name: Create windows directory
+        run: mkdir -v -p builds/windows
+
+      - name: Artifacts directory
+        run: mkdir -v -p artifacts
+
+      - name: Reconfigure export presets
+        run: python ./reconfigure-exports.py
+
+      - name: Build Linux binary
+        run: godot -v --export "Linux/X11" builds/linux/${COMPILE_NAME}.x86_64 project.godot
+
+      - name: Build Windows binary
+        run: godot -v --export "Windows Desktop" builds/windows/${COMPILE_NAME}.exe project.godot
+
+      - name: Chmod
+        run: chmod +rwx builds/linux/${COMPILE_NAME}.x86_64
+
+      - name: Zip Linux file
+        run: zip artifacts/${{ github.event.repository.name }}-Linux.zip builds/linux/${COMPILE_NAME}.x86_64
+
+      - name: Zip Windows file
+        run: zip artifacts/${{ github.event.repository.name }}-Windows.zip builds/windows/${COMPILE_NAME}.exe
+
+      - name: Version
+        run: echo "::set-output name=version::$(python ./gd-version.py)"
+        id: version
+
+      - name: Date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M')"
+
+      - name: Release
+        continue-on-error: true
+        
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: README.md
+          tag_name: ${{ steps.date.outputs.date }}
+          name: ${{ steps.version.outputs.version }}
+          draft: false
+          prerelease: false
+          token: ${{ github.token }}
+          files: |
+            artifacts/${{ github.event.repository.name }}-Windows.zip
+            artifacts/${{ github.event.repository.name }}-Linux.zip
+  
