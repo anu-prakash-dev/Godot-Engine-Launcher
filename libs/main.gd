@@ -1,9 +1,9 @@
 extends Node
 
-###############################
-# Copyright © 2022 GamePlayer #
-#       On MIT License        #
-###############################
+##################################
+#  Copyright C 2022 GamePlayer   #
+# GNU GENERAL PUBLIC LICENSE 3.0 #
+##################################
 
 static func mkdir(path):
 	""" Make directory """
@@ -108,8 +108,6 @@ static func rmdir(path, rmfolder = true):
 
 static func load_image(path, quality = 1):
 	""" Load image from user:// or res:// path """
-	if path == "":
-		return
 	var texture = ImageTexture.new()
 	var image = Image.new()
 	image.load(path)

@@ -1,9 +1,9 @@
 extends Node
 
-#######################################
-#  Copyright © 2020 - 2022 GamePlayer #
-#            on MIT License.          #
-#######################################
+#########################################
+#  Copyright C 2020 - 2022 GamePlayer   #
+#    GNU GENERAL PUBLIC LICENSE 3.0     #
+#########################################
 
 var ICONPATH = OS.get_user_data_dir()+"/godot.png"
 

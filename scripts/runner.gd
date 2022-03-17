@@ -1,9 +1,9 @@
 extends Control
 
-#######################################
-#  Copyright © 2020 - 2022 GamePlayer #
-#            on MIT License.          #
-#######################################
+#########################################
+#  Copyright C 2020 - 2022 GamePlayer   #
+#    GNU GENERAL PUBLIC LICENSE 3.0     #
+#########################################
 
 var BASE_URL = "https://downloads.tuxfamily.org/godotengine/"
 var DOWNLOAD_OS_EXTENSION = "x11.64"
